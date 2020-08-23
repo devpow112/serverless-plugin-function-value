@@ -1,0 +1,38 @@
+{
+  "name": "serverless-plugin-function-value",
+  "version": "1.0.0",
+  "description": "Serverless function value plugin",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "babel --out-dir dist src",
+    "lint": "eslint .",
+    "format": "npm run lint -s -- --fix",
+    "test": "npm run lint -s"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devpow112/serverless-plugin-function-reference.git"
+  },
+  "keywords": [
+    "aws",
+    "cloudformation",
+    "serverless",
+    "plugin"
+  ],
+  "author": "Devon Powell",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/devpow112/serverless-plugin-function-reference/issues"
+  },
+  "homepage": "https://github.com/devpow112/serverless-plugin-function-reference#readme",
+  "files": [
+    "dist/**/*.js"
+  ],
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.4",
+    "@babel/preset-env": "^7.11.0",
+    "babel-plugin-add-module-exports": "^1.0.2",
+    "eslint": "^7.7.0"
+  }
+}

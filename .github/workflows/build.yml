@@ -1,0 +1,28 @@
+name: build
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Read configs
+        id: configs
+        run: echo "##[set-output name=NODE_VERSION;]$(cat .nvmrc)"
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ steps.configs.outputs.NODE_VERSION }}
+      - name: Install packages
+        run: npm i
+      - name: Run tests
+        run: npm test
+      - name: Run build
+        run: npm run build
