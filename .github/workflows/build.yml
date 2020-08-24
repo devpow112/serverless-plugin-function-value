@@ -20,6 +20,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ steps.configs.outputs.NODE_VERSION }}
+          registry-url: 'https://registry.npmjs.org'
       - name: Install packages
         run: npm i
       - name: Run tests
