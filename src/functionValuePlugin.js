@@ -1,8 +1,6 @@
 export class FunctionValuePlugin {
   constructor(serverless) {
-    const provider = serverless.getProvider('aws');
-
-    this.naming = provider.naming;
+    this.naming = serverless.getProvider('aws').naming;
     this.functions = serverless.service.getAllFunctions();
     this.variableResolvers = {
       'fn.arn': this.getFunctionARNStatement.bind(this),
@@ -10,7 +8,9 @@ export class FunctionValuePlugin {
     }
   }
 
-  getFunctionLogicalId(functionName) {
+  getFunctionLogicalId(value) {
+    const functionName = value.replace(/^.*:/, '');
+
     if (!this.functions.includes(functionName)) {
       throw new Error(
         `Function "${functionName}" doesn't exist in this Service`
@@ -20,17 +20,11 @@ export class FunctionValuePlugin {
     return this.naming.getLambdaLogicalId(functionName);
   }
 
-  getFunctionARNStatement(variable) {
-    const functionName = variable.slice(7);
-    const logicalId = this.getFunctionLogicalId(functionName);
-
-    return Promise.resolve(`!GetAtt ${logicalId}.ARN`);
+  getFunctionARNStatement(value) {
+    return Promise.resolve(`!GetAtt ${this.getFunctionLogicalId(value)}.ARN`);
   }
 
-  getFunctionNameStatement(variable) {
-    const functionName = variable.slice(8);
-    const logicalId = this.getFunctionLogicalId(functionName);
-
-    return Promise.resolve(`!Ref ${logicalId}`);
+  getFunctionNameStatement(value) {
+    return Promise.resolve(`!Ref ${this.getFunctionLogicalId(value)}`);
   }
 }
