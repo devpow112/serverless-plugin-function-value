@@ -3,8 +3,8 @@ export class FunctionValuePlugin {
     this.naming = serverless.getProvider('aws').naming;
     this.functions = serverless.service.getAllFunctions();
     this.variableResolvers = {
-      'fn.arn': this.getFunctionARNStatement.bind(this),
-      'fn.name': this.getFunctionNameStatement.bind(this)
+      'fn.arn': (value) => this.getFunctionARNStatement(value),
+      'fn.name': (value) => this.getFunctionNameStatement(value)
     }
   }
 
