@@ -1,6 +1,7 @@
 # Serverless Function Value Plugin
 
-[![License]](LICENSE)
+[![License][License Badge]](LICENSE)
+[![Version][Version Badge]](package.json#L32)
 [![Build][CI Badge]][CI Workflow]
 
 Serverless framework plugin that will automatically generate CloudFormation
@@ -104,6 +105,7 @@ npm run format
 This will format based on [.eslintrc](.eslintrc) settings.
 
 <!-- links -->
-[License]: https://img.shields.io/github/license/devpow112/serverless-plugin-function-value
+[License Badge]: https://img.shields.io/github/license/devpow112/serverless-plugin-function-value
+[Version Badge]: https://img.shields.io/github/package-json/v/devpow112/serverless-plugin-function-value
 [CI Badge]: https://github.com/devpow112/serverless-plugin-function-value/workflows/build/badge.svg?branch=master
 [CI Workflow]: https://github.com/devpow112/serverless-plugin-function-value/actions?query=workflow%3Abuild+branch%3Amaster
