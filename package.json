@@ -19,7 +19,7 @@
     "serverless",
     "plugin"
   ],
-  "author": "Devon Powell",
+  "author": "Devon Powell <devon.f.powell@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/devpow112/serverless-plugin-function-reference/issues"
