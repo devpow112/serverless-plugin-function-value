@@ -8,7 +8,7 @@
 [![Node Version][Node Version Badge]](package.json#L35)
 
 Serverless framework plugin that will automatically generate CloudFormation
-snippets to reference a functions name or ARN value based on the generated
+snippets to reference a functions `name` or `arn` value based on the generated
 logical ID used during creation of the CloudFormation templates.
 
 ## Installation
@@ -60,7 +60,7 @@ resources:
     LambdaFunctionExecutor:
         Type: Custom::LambdaFunctionExecutor
         Properties:
-          ServiceToken: !GetAtt HealthLambdaFunction.ARN # resolved
+          ServiceToken: !GetAtt HealthLambdaFunction.Arn # resolved
           Name: !Ref HealthLambdaFunction # resolved
 
 functions:

@@ -20,7 +20,7 @@ describe('plugin', () => {
   });
 
   [
-    { type: 'arn', expected: `!GetAtt ${logicalId}.ARN` },
+    { type: 'arn', expected: `!GetAtt ${logicalId}.Arn` },
     { type: 'name', expected: `!Ref ${logicalId}` }
   ].forEach(test => {
     it(`will generate function ${test.type} snippet`, async () => {
