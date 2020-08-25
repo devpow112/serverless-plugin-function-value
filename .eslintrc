@@ -5,7 +5,8 @@
         "es6": true
     },
     "parserOptions": {
-        "sourceType": "module"
+        "sourceType": "module",
+        "ecmaVersion": 2019
     },
     "extends": "eslint:recommended",
     "rules": {
@@ -22,6 +23,18 @@
         "indent": [
             "error",
             2
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "object-curly-spacing": [
+            "error",
+            "always"
+        ],
+        "array-bracket-spacing": [
+            "error",
+            "never"
         ]
     }
 }

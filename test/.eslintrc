@@ -1,0 +1,20 @@
+{
+  "env": {
+    "mocha": true
+  },
+  "plugins": [
+    "mocha",
+    "chai-friendly"
+  ],
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "rules": {
+    "mocha/no-identical-title": [
+      "error"
+    ],
+    "chai-friendly/no-unused-expressions": [
+      "error"
+    ]
+  }
+}

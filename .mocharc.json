@@ -1,0 +1,6 @@
+{
+  "spec": "test/**/*.spec.js",
+  "slow": 10,
+  "timeout": 50,
+  "require": "@babel/register"
+}
