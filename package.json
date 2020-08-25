@@ -28,6 +28,9 @@
   "files": [
     "dist/**/*.js"
   ],
+  "directories": {
+    "test": "test"
+  },
   "engines": {
     "node": ">=10"
   },
