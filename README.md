@@ -110,7 +110,7 @@ This will format based on [.eslintrc](.eslintrc) settings.
 <!-- links -->
 [License Badge]: https://img.shields.io/github/license/devpow112/serverless-plugin-function-value
 [Version Badge]: https://img.shields.io/npm/v/serverless-plugin-function-value
-[Version Package]: https://www.npmjs.com/package/serverless-plugin-function-value
+[Version Package]: https://www.npmjs.com/serverless-plugin-function-value
 [Node Version Badge]: https://img.shields.io/node/v/serverless-plugin-function-value
 [CI Badge]: https://github.com/devpow112/serverless-plugin-function-value/workflows/build/badge.svg?branch=master
 [CI Workflow]: https://github.com/devpow112/serverless-plugin-function-value/actions?query=workflow%3Abuild+branch%3Amaster
