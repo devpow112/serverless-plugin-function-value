@@ -3,7 +3,7 @@ export class FunctionValuePlugin {
     this.naming = serverless.getProvider('aws').naming;
     this.functions = serverless.service.getAllFunctions();
     this.variableResolvers = {
-      'fn.arn': (value) => this.getFunctionARNStatement(value),
+      'fn.arn': (value) => this.getFunctionArnStatement(value),
       'fn.name': (value) => this.getFunctionNameStatement(value)
     };
   }
@@ -20,8 +20,8 @@ export class FunctionValuePlugin {
     return this.naming.getLambdaLogicalId(functionName);
   }
 
-  getFunctionARNStatement(value) {
-    return Promise.resolve(`!GetAtt ${this.getFunctionLogicalId(value)}.ARN`);
+  getFunctionArnStatement(value) {
+    return Promise.resolve(`!GetAtt ${this.getFunctionLogicalId(value)}.Arn`);
   }
 
   getFunctionNameStatement(value) {
