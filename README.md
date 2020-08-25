@@ -1,11 +1,11 @@
 # Serverless Function Value Plugin
 
 [![License][License Badge]](LICENSE)
-[![Version][Version Badge]](package.json#L3)
-[![Node Version][Node Version Badge]](package.json#L35)
+[![Version][Version Badge]][Version Package]
 [![Build][CI Badge]][CI Workflow]
 [![Coverage][Coverage Badge]][Coverage Report]
 [![Vulnerabilities][Vulnerabilities Badge]][Vulnerabilities Report]
+[![Node Version][Node Version Badge]](package.json#L35)
 
 Serverless framework plugin that will automatically generate CloudFormation
 snippets to reference a functions name or ARN value based on the generated
@@ -109,7 +109,8 @@ This will format based on [.eslintrc](.eslintrc) settings.
 
 <!-- links -->
 [License Badge]: https://img.shields.io/github/license/devpow112/serverless-plugin-function-value
-[Version Badge]: https://img.shields.io/github/package-json/v/devpow112/serverless-plugin-function-value
+[Version Badge]: https://img.shields.io/npm/v/serverless-plugin-function-value
+[Version Package]: https://www.npmjs.com/package/serverless-plugin-function-value
 [Node Version Badge]: https://img.shields.io/node/v/serverless-plugin-function-value
 [CI Badge]: https://github.com/devpow112/serverless-plugin-function-value/workflows/build/badge.svg?branch=master
 [CI Workflow]: https://github.com/devpow112/serverless-plugin-function-value/actions?query=workflow%3Abuild+branch%3Amaster
