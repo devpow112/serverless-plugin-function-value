@@ -1,6 +1,6 @@
 {
   "name": "serverless-plugin-function-value",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Serverless framework plugin that will automatically generate CloudFormation snippets to reference a functions name or ARN value based on the generated logical ID used during creation of the CloudFormation templates",
   "main": "dist/index.js",
   "scripts": {
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/devpow112/serverless-plugin-function-reference.git"
+    "url": "git+https://github.com/devpow112/serverless-plugin-function-value.git"
   },
   "keywords": [
     "aws",
@@ -22,12 +22,15 @@
   "author": "Devon Powell <devon.f.powell@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/devpow112/serverless-plugin-function-reference/issues"
+    "url": "https://github.com/devpow112/serverless-plugin-function-value/issues"
   },
-  "homepage": "https://github.com/devpow112/serverless-plugin-function-reference#readme",
+  "homepage": "https://github.com/devpow112/serverless-plugin-function-value#readme",
   "files": [
     "dist/**/*.js"
   ],
+  "engines": {
+    "node": ">=10"
+  },
   "devDependencies": {
     "@babel/cli": "^7.10.5",
     "@babel/core": "^7.11.4",
