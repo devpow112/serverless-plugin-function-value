@@ -1,4 +1,4 @@
-import Plugin from '../src/index';
+import Plugin from '../src';
 import sinon from 'sinon';
 import { expect } from 'chai';
 
@@ -8,12 +8,11 @@ describe('plugin', () => {
   let variableResolvers;
 
   before(() => {
-    const service = { getAllFunctions: sinon.stub().returns([functionName]) };
     const provider = {
       naming: { getLambdaLogicalId: sinon.stub().returns(logicalId) }
     };
     const serverless = {
-      service,
+      service: { getAllFunctions: sinon.stub().returns([functionName]) },
       getProvider: sinon.stub().returns(provider)
     };
 
