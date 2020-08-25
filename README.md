@@ -11,13 +11,13 @@ logical ID used during creation of the CloudFormation templates.
 
 ## Installation
 
-```
+```bash
 npm i -D serverless-plugin-function-value
 ```
 
 ## Usage
 
-```yml
+```yaml
 service: test
 
 plugins:
@@ -43,7 +43,7 @@ functions:
 During pre-processing the `${fn.*}` related items will be resolved resulting in
 the below CloudFormation snippet.
 
-```yml
+```yaml
 service: test
 
 plugins:
@@ -74,13 +74,13 @@ Development can be done on any machine that can install **Node.js**.
 
 Install dependencies via `npm`.
 
-```
+```bash
 npm i
 ```
 
 Run a build via `npm`:
 
-```
+```bash
 npm run build
 ```
 
@@ -88,7 +88,7 @@ npm run build
 
 Execute tests via `npm`.
 
-```
+```bash
 npm test
 ```
 
@@ -99,7 +99,7 @@ report after test execution.
 
 Execute formatter via `npm`.
 
-```
+```bash
 npm run format
 ```
 
