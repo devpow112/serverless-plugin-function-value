@@ -17,7 +17,7 @@ jobs:
         id: configs
         run: echo "##[set-output name=NODE_VERSION;]$(cat .nvmrc)"
       - name: Setup node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2.1.1
         with:
           node-version: ${{ steps.configs.outputs.NODE_VERSION }}
           registry-url: 'https://registry.npmjs.org'
