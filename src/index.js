@@ -1,3 +1,3 @@
-import { FunctionValuePlugin } from './functionValuePlugin';
+import { FunctionValuePlugin } from './function-value-plugin';
 
 export default FunctionValuePlugin;

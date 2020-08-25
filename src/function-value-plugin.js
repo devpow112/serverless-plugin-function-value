@@ -5,7 +5,7 @@ export class FunctionValuePlugin {
     this.variableResolvers = {
       'fn.arn': (value) => this.getFunctionARNStatement(value),
       'fn.name': (value) => this.getFunctionNameStatement(value)
-    }
+    };
   }
 
   getFunctionLogicalId(value) {

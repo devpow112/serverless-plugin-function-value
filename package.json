@@ -7,7 +7,7 @@
     "build": "babel --out-dir dist src",
     "lint": "eslint .",
     "format": "npm run lint -s -- --fix",
-    "test": "npm run lint -s"
+    "test": "npm run lint -s && nyc mocha --colors"
   },
   "repository": {
     "type": "git",
@@ -35,7 +35,14 @@
     "@babel/cli": "^7.10.5",
     "@babel/core": "^7.11.4",
     "@babel/preset-env": "^7.11.0",
+    "@babel/register": "^7.10.5",
     "babel-plugin-add-module-exports": "^1.0.2",
-    "eslint": "^7.7.0"
+    "chai": "^4.2.0",
+    "eslint": "^7.7.0",
+    "eslint-plugin-chai-friendly": "^0.6.0",
+    "eslint-plugin-mocha": "^8.0.0",
+    "mocha": "^8.1.1",
+    "nyc": "^15.1.0",
+    "sinon": "^9.0.3"
   }
 }
