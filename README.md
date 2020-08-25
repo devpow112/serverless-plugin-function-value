@@ -5,6 +5,7 @@
 [![Node Version][Node Version Badge]](package.json#L35)
 [![Build][CI Badge]][CI Workflow]
 [![Coverage][Coverage Badge]][Coverage Report]
+![Size][Package Size]
 
 Serverless framework plugin that will automatically generate CloudFormation
 snippets to reference a functions name or ARN value based on the generated
@@ -114,3 +115,4 @@ This will format based on [.eslintrc](.eslintrc) settings.
 [CI Workflow]: https://github.com/devpow112/serverless-plugin-function-value/actions?query=workflow%3Abuild+branch%3Amaster
 [Coverage Badge]: https://coveralls.io/repos/github/devpow112/serverless-plugin-function-value/badge.svg?branch=master
 [Coverage Report]: https://coveralls.io/github/devpow112/serverless-plugin-function-value?branch=master
+[Package Size]: https://img.shields.io/bundlephobia/min/serverless-plugin-function-value
