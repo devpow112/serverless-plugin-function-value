@@ -5,6 +5,7 @@
 [![Node Version][Node Version Badge]](package.json#L35)
 [![Build][CI Badge]][CI Workflow]
 [![Coverage][Coverage Badge]][Coverage Report]
+[![Vulnerabilities][Vulnerabilities Badge]][Vulnerabilities Report]
 ![Size][Package Size]
 
 Serverless framework plugin that will automatically generate CloudFormation
@@ -116,3 +117,5 @@ This will format based on [.eslintrc](.eslintrc) settings.
 [Coverage Badge]: https://coveralls.io/repos/github/devpow112/serverless-plugin-function-value/badge.svg?branch=master
 [Coverage Report]: https://coveralls.io/github/devpow112/serverless-plugin-function-value?branch=master
 [Package Size]: https://img.shields.io/bundlephobia/min/serverless-plugin-function-value
+[Vulnerabilities Badge]: https://snyk.io/test/github/devpow112/serverless-plugin-function-value/badge.svg
+[Vulnerabilities Report]: https://snyk.io/test/github/devpow112/serverless-plugin-function-value
