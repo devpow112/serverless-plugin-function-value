@@ -42,30 +42,25 @@ functions:
     ...
 ```
 
-During pre-processing the `${fn.*}` related items will be resolved resulting in
-the below CloudFormation snippet.
+During processing the `${fn.*}` related items will be resolved to either the
+`Fn::GetAtt` for `${fn.arn:*}` or `Ref` for `${fn.name:*}`. The custom resource
+above would look like the below in the generated CloudForamtion template.
 
-```yaml
-service: test
-
-plugins:
-  - serverless-plugin-function-value
-
-provider:
-  name: aws
-  ...
-
-resources:
-  Resources:
-    LambdaFunctionExecutor:
-        Type: Custom::LambdaFunctionExecutor
-        Properties:
-          ServiceToken: !GetAtt HealthLambdaFunction.Arn # resolved
-          Name: !Ref HealthLambdaFunction # resolved
-
-functions:
-  health:
-    ...
+```json
+"LambdaFunctionExecutor": {
+    "Type": "Custom::LambdaFunctionExecutor",
+    "Properties": {
+        "ServiceToken": {
+            "Fn::GetAtt": [
+                "HealthLambdaFunction",
+                "Arn"
+            ]
+        },
+        "Name": {
+            "Ref": "HealthLambdaFunction"
+        }
+    }
+}
 ```
 
 ## Development
