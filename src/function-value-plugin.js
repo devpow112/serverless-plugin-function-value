@@ -21,10 +21,12 @@ export class FunctionValuePlugin {
   }
 
   getFunctionArnStatement(value) {
-    return Promise.resolve(`!GetAtt ${this.getFunctionLogicalId(value)}.Arn`);
+    return Promise.resolve({
+      'Fn::GetAtt': [this.getFunctionLogicalId(value), 'Arn']
+    });
   }
 
   getFunctionNameStatement(value) {
-    return Promise.resolve(`!Ref ${this.getFunctionLogicalId(value)}`);
+    return Promise.resolve({ Ref: this.getFunctionLogicalId(value) });
   }
 }

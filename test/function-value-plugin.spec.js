@@ -20,15 +20,15 @@ describe('plugin', () => {
   });
 
   [
-    { type: 'arn', expected: `!GetAtt ${logicalId}.Arn` },
-    { type: 'name', expected: `!Ref ${logicalId}` }
+    { type: 'arn', expected: { 'Fn::GetAtt': [logicalId, 'Arn'] } },
+    { type: 'name', expected: { Ref: logicalId } }
   ].forEach(test => {
     it(`will generate function ${test.type} snippet`, async () => {
       const resolver = `fn.${test.type}`;
       const value = `${resolver}:${functionName}`;
       const result = await variableResolvers[resolver](value);
 
-      expect(result).to.equal(test.expected);
+      expect(result).to.deep.equal(test.expected);
     });
   });
 
