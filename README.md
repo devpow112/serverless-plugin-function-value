@@ -44,7 +44,7 @@ functions:
 
 During processing the `${fn.*}` related items will be resolved to either the
 `Fn::GetAtt` for `${fn.arn:*}` or `Ref` for `${fn.name:*}`. The custom resource
-above would look like the below in the generated CloudForamtion template.
+above would look like the below in the generated CloudFormation template.
 
 ```json
 "LambdaFunctionExecutor": {
