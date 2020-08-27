@@ -24,9 +24,9 @@ describe('plugin', () => {
     { type: 'name', expected: { Ref: logicalId } }
   ].forEach(test => {
     it(`will generate function ${test.type} snippet`, async () => {
-      const resolver = `fn.${test.type}`;
-      const value = `${resolver}:${functionName}`;
-      const result = await variableResolvers[resolver](value);
+      const resolverKey = `fn.${test.type}`;
+      const value = `${resolverKey}:${functionName}`;
+      const result = await variableResolvers[resolverKey].resolver(value);
 
       expect(result).to.deep.equal(test.expected);
     });
@@ -34,10 +34,13 @@ describe('plugin', () => {
 
   it('will fail if function not found', async () => {
     try {
-      await variableResolvers['fn.arn']('fn.arn:test');
-      throw new Error('should not get here');
-    } catch {
-      // success!
+      await variableResolvers['fn.arn'].resolver('fn.arn:test');
+    } catch(err) {
+      expect(err.message).to.be.equal('Cannot resolve "test", does not exist');
+
+      return;
     }
+
+    throw new Error('fail');
   });
 });

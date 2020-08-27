@@ -1,10 +1,21 @@
+const defaultVariableResolverOptions = {
+  serviceName: 'serverless-plugin-function-value',
+  isDisabledAtPrepopulation: true
+};
+
 export class FunctionValuePlugin {
   constructor(serverless) {
     this.naming = serverless.getProvider('aws').naming;
     this.functions = serverless.service.getAllFunctions();
     this.variableResolvers = {
-      'fn.arn': (value) => this.getFunctionArnStatement(value),
-      'fn.name': (value) => this.getFunctionNameStatement(value)
+      'fn.arn': {
+        resolver: (value) => this.getFunctionArnStatement(value),
+        ...defaultVariableResolverOptions
+      },
+      'fn.name': {
+        resolver: (value) => this.getFunctionNameStatement(value),
+        ...defaultVariableResolverOptions
+      }
     };
   }
 
@@ -12,9 +23,7 @@ export class FunctionValuePlugin {
     const functionName = value.replace(/^.*:/, '');
 
     if (!this.functions.includes(functionName)) {
-      throw new Error(
-        `Function "${functionName}" doesn't exist in this Service`
-      );
+      throw new Error(`Cannot resolve "${functionName}", does not exist`);
     }
 
     return this.naming.getLambdaLogicalId(functionName);
