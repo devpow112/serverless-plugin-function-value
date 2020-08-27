@@ -5,37 +5,37 @@ const defaultVariableResolverOptions = {
 
 export class FunctionValuePlugin {
   constructor(serverless) {
-    this.naming = serverless.getProvider('aws').naming;
-    this.functions = serverless.service.getAllFunctions();
+    this._naming = serverless.getProvider('aws').naming;
+    this._functions = serverless.service.getAllFunctions();
     this.variableResolvers = {
       'fn.arn': {
-        resolver: (value) => this.getFunctionArnStatement(value),
+        resolver: (value) => this._getLambdaArnObject(value),
         ...defaultVariableResolverOptions
       },
       'fn.name': {
-        resolver: (value) => this.getFunctionNameStatement(value),
+        resolver: (value) => this._getLambdaNameObject(value),
         ...defaultVariableResolverOptions
       }
     };
   }
 
-  getFunctionLogicalId(value) {
+  _getLambdaLogicalId(value) {
     const functionName = value.replace(/^.*:/, '');
 
-    if (!this.functions.includes(functionName)) {
+    if (!this._functions.includes(functionName)) {
       throw new Error(`Cannot resolve "${functionName}", does not exist`);
     }
 
-    return this.naming.getLambdaLogicalId(functionName);
+    return this._naming.getLambdaLogicalId(functionName);
   }
 
-  getFunctionArnStatement(value) {
+  _getLambdaArnObject(value) {
     return Promise.resolve({
-      'Fn::GetAtt': [this.getFunctionLogicalId(value), 'Arn']
+      'Fn::GetAtt': [this._getLambdaLogicalId(value), 'Arn']
     });
   }
 
-  getFunctionNameStatement(value) {
-    return Promise.resolve({ Ref: this.getFunctionLogicalId(value) });
+  _getLambdaNameObject(value) {
+    return Promise.resolve({ Ref: this._getLambdaLogicalId(value) });
   }
 }
