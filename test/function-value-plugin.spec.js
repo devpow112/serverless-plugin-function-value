@@ -1,5 +1,5 @@
 import Plugin from '../src';
-import  { stub, assert, spy }  from 'sinon';
+import { stub, assert, spy } from 'sinon';
 import { expect } from 'chai';
 
 describe('plugin', () => {
@@ -23,7 +23,7 @@ describe('plugin', () => {
     { type: 'arn', expected: { 'Fn::GetAtt': [logicalId, 'Arn'] } },
     { type: 'name', expected: { Ref: logicalId } }
   ].forEach(test => {
-    it(`will generate function ${test.type} snippet`, async () => {
+    it(`will generate function ${test.type} snippet`, async() => {
       const resolverKey = `fn.${test.type}`;
       const value = `${resolverKey}:${functionName}`;
       const variableResolvers = new Plugin(serverless).variableResolvers;
@@ -34,7 +34,7 @@ describe('plugin', () => {
     });
   });
 
-  it('will fail if function not found', async () => {
+  it('will fail if function not found', async() => {
     try {
       const variableResolvers = new Plugin(serverless).variableResolvers;
 
@@ -49,14 +49,16 @@ describe('plugin', () => {
     throw new Error('fail');
   });
 
-  it('will debug log', async () => {
+  it('will debug log', async() => {
     process.env.SLS_DEBUG = 1;
 
-    const variableResolvers = new Plugin(serverless).variableResolvers;
     const value = `fn.arn:${functionName}`;
+    const variableResolvers = new Plugin(serverless).variableResolvers;
 
-    await variableResolvers['fn.arn'].resolver(value);
+    for (let i = 0; i < 2; i++) {
+      await variableResolvers['fn.arn'].resolver(value);
 
-    assert.calledOnce(serverless.cli.log);
+      assert.calledOnce(serverless.cli.log);
+    }
   });
 });
