@@ -1,27 +1,46 @@
+const serviceName = 'serverless-plugin-function-value';
 const defaultVariableResolverOptions = {
-  serviceName: 'serverless-plugin-function-value',
+  serviceName,
   isDisabledAtPrepopulation: true
 };
 
+const format = (value, result) =>
+  `[${serviceName}] \${${value}} => ${JSON.stringify(result)}`;
+
 export class FunctionValuePlugin {
   constructor(serverless) {
+    if (!process.env.SLS_DEBUG) {
+      this._log = () => { };
+    } else {
+      this._log = (value, result) => serverless.cli.log(format(value, result));
+    }
+
     this._naming = serverless.getProvider('aws').naming;
     this._functions = serverless.service.getAllFunctions();
     this.variableResolvers = {
       'fn.arn': {
-        resolver: (value) => this._getLambdaArnObject(value),
+        resolver: (value) => this._resolve(value, this._getLambdaArnObject),
         ...defaultVariableResolverOptions
       },
       'fn.name': {
-        resolver: (value) => this._getLambdaNameObject(value),
+        resolver: (value) => this._resolve(value, this._getLambdaNameObject),
         ...defaultVariableResolverOptions
       }
     };
   }
 
-  _getLambdaLogicalId(value) {
-    const functionName = value.replace(/^.*:/, '');
+  _resolve(value, resolver) {
+    resolver = resolver.bind(this);
 
+    const functionName = value.replace(/^.*:/, '');
+    const result = resolver(functionName);
+
+    this._log(value, result);
+
+    return Promise.resolve(result);
+  }
+
+  _getLambdaLogicalId(functionName) {
     if (!this._functions.includes(functionName)) {
       throw new Error(`Cannot resolve "${functionName}", does not exist`);
     }
@@ -29,13 +48,11 @@ export class FunctionValuePlugin {
     return this._naming.getLambdaLogicalId(functionName);
   }
 
-  _getLambdaArnObject(value) {
-    return Promise.resolve({
-      'Fn::GetAtt': [this._getLambdaLogicalId(value), 'Arn']
-    });
+  _getLambdaArnObject(functionName) {
+    return { 'Fn::GetAtt': [this._getLambdaLogicalId(functionName), 'Arn'] };
   }
 
-  _getLambdaNameObject(value) {
-    return Promise.resolve({ Ref: this._getLambdaLogicalId(value) });
+  _getLambdaNameObject(functionName) {
+    return { Ref: this._getLambdaLogicalId(functionName) };
   }
 }
