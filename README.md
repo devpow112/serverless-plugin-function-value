@@ -8,8 +8,8 @@
 [![Node Version][Node Version Badge]](package.json#L35)
 
 Serverless framework plugin that will automatically generate CloudFormation
-snippets to reference a functions `name` or `arn` value based on the generated
-logical ID used during creation of the CloudFormation templates.
+snippets to reference a functions `name` or `arn` value based on the Serverless
+internally generated Lambda logical ID.
 
 ## Installation
 
