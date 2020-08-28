@@ -26,11 +26,11 @@ export class FunctionValuePlugin {
     this._functions = serverless.service.getAllFunctions();
     this.variableResolvers = {
       'fn.arn': {
-        resolver: (value) => this._resolve(value, this._getLambdaArnObject),
+        resolver: value => this._resolve(value, this._getLambdaArnObject),
         ...defaultVariableResolverOptions
       },
       'fn.name': {
-        resolver: (value) => this._resolve(value, this._getLambdaNameObject),
+        resolver: value => this._resolve(value, this._getLambdaNameObject),
         ...defaultVariableResolverOptions
       }
     };

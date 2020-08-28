@@ -1,6 +1,6 @@
-import Plugin from '../src';
 import { stub, assert, spy } from 'sinon';
 import { expect } from 'chai';
+import Plugin from '../src';
 
 describe('plugin', () => {
   const functionName = 'health';
@@ -22,19 +22,19 @@ describe('plugin', () => {
   [
     { type: 'arn', expected: { 'Fn::GetAtt': [logicalId, 'Arn'] } },
     { type: 'name', expected: { Ref: logicalId } }
-  ].forEach(test => {
-    it(`will generate function ${test.type} snippet`, async() => {
-      const resolverKey = `fn.${test.type}`;
+  ].forEach(testData => {
+    it(`will generate function ${testData.type} snippet`, async () => {
+      const resolverKey = `fn.${testData.type}`;
       const value = `${resolverKey}:${functionName}`;
       const variableResolvers = new Plugin(serverless).variableResolvers;
       const result = await variableResolvers[resolverKey].resolver(value);
 
-      expect(result).to.deep.equal(test.expected);
+      expect(result).to.deep.equal(testData.expected);
       assert.notCalled(serverless.cli.log);
     });
   });
 
-  it('will fail if function not found', async() => {
+  it('will fail if function not found', async () => {
     try {
       const variableResolvers = new Plugin(serverless).variableResolvers;
 
@@ -49,7 +49,7 @@ describe('plugin', () => {
     throw new Error('fail');
   });
 
-  it('will debug log', async() => {
+  it('will debug log', async () => {
     process.env.SLS_DEBUG = 1;
 
     const value = `fn.arn:${functionName}`;
