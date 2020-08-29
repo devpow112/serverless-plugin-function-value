@@ -1,4 +1,4 @@
-import { stub, assert, spy } from 'sinon';
+import { assert, spy, stub } from 'sinon';
 import { expect } from 'chai';
 import Plugin from '../src';
 
