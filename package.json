@@ -7,7 +7,7 @@
     "build": "babel --out-dir dist src",
     "lint": "eslint .",
     "format": "npm run lint -s -- --fix",
-    "test": "npm run lint -s && nyc mocha --colors"
+    "test": "npm run lint -s && nyc mocha"
   },
   "repository": {
     "type": "git",
