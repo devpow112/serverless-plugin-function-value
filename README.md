@@ -107,9 +107,9 @@ This will format based on [.eslintrc](.eslintrc) settings.
 [Version Badge]: https://img.shields.io/npm/v/serverless-plugin-function-value
 [Version Package]: https://www.npmjs.com/serverless-plugin-function-value
 [Node Version Badge]: https://img.shields.io/node/v/serverless-plugin-function-value
-[CI Badge]: https://github.com/devpow112/serverless-plugin-function-value/workflows/build/badge.svg?branch=master
-[CI Workflow]: https://github.com/devpow112/serverless-plugin-function-value/actions?query=workflow%3Abuild+branch%3Amaster
-[Coverage Badge]: https://coveralls.io/repos/github/devpow112/serverless-plugin-function-value/badge.svg?branch=master
-[Coverage Report]: https://coveralls.io/github/devpow112/serverless-plugin-function-value?branch=master
+[CI Badge]: https://github.com/devpow112/serverless-plugin-function-value/workflows/build/badge.svg?branch=main
+[CI Workflow]: https://github.com/devpow112/serverless-plugin-function-value/actions?query=workflow%3Abuild+branch%3Amain
+[Coverage Badge]: https://coveralls.io/repos/github/devpow112/serverless-plugin-function-value/badge.svg?branch=main
+[Coverage Report]: https://coveralls.io/github/devpow112/serverless-plugin-function-value?branch=main
 [Vulnerabilities Badge]: https://snyk.io/test/github/devpow112/serverless-plugin-function-value/badge.svg
 [Vulnerabilities Report]: https://snyk.io/test/github/devpow112/serverless-plugin-function-value
