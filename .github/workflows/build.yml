@@ -30,7 +30,7 @@ jobs:
       - name: Run build
         run: npm run build
       - name: Release
-        if: github.ref == 'refs/heads/master' # run on only master
+        if: github.ref == 'refs/heads/main' # run on only main
         run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{github.token}}
