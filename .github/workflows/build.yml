@@ -33,8 +33,25 @@ jobs:
           github-token: ${{github.token}}
       - name: Run build
         run: npm run build
-      - name: Publish package
+      - name: Get previous package info
+        if: startsWith(github.ref, 'refs/tags/') # run on only tags
+        id: previous-package
+        run: |
+          NAME=$(node -pe "require('./package.json').name")
+          VERSION=$(npm show ${NAME} version)
+          echo "##[set-output name=NAME;]${NAME}"
+          echo "##[set-output name=VERSION;]${VERSION}"
+          echo "##[set-output name=ID;]${NAME}@${VERSION}"
+      - name: Publish new package
         if: startsWith(github.ref, 'refs/tags/') # run on only tags
         run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      - name: Deprecate previous package
+        if: startsWith(github.ref, 'refs/tags/') # run on only tags
+        run: >
+          npm deprecate
+          ${{steps.previous-package.outputs.ID}}
+          "Version no longer supported. Upgrade to @latest."
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
