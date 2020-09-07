@@ -7,7 +7,7 @@
 [![Vulnerabilities][Vulnerabilities Badge]][Vulnerabilities Report]
 [![Node Version][Node Version Badge]](package.json#L35)
 
-Serverless framework plugin that will automatically generate CloudFormation
+Serverless framework plugin that will automatically generate AWS CloudFormation
 snippets to reference a functions `name` or `arn` value based on the Serverless
 internally generated Lambda logical ID.
 
