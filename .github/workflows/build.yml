@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - main
-    tags:
-      - '[0-9]+.[0-9]+.[0-9]+'
 jobs:
   build:
     name: build
@@ -24,34 +22,16 @@ jobs:
       - name: Install packages
         run: npm i
       - name: Run tests
-        if: (!startsWith(github.ref, 'refs/tags/')) # run on all but tags
         run: npm test
       - name: Report coverage
-        if: (!startsWith(github.ref, 'refs/tags/')) # run on all but tags
         uses: coverallsapp/github-action@v1.1.2
         with:
           github-token: ${{github.token}}
       - name: Run build
         run: npm run build
-      - name: Get previous package info
-        if: startsWith(github.ref, 'refs/tags/') # run on only tags
-        id: previous-package
-        run: |
-          NAME=$(node -pe "require('./package.json').name")
-          VERSION=$(npm show ${NAME} version)
-          echo "##[set-output name=NAME;]${NAME}"
-          echo "##[set-output name=VERSION;]${VERSION}"
-          echo "##[set-output name=ID;]${NAME}@${VERSION}"
-      - name: Publish new package
-        if: startsWith(github.ref, 'refs/tags/') # run on only tags
-        run: npm publish
+      - name: Release
+        if: github.ref == 'refs/heads/master' # run on only master
+        run: npx semantic-release
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-      - name: Deprecate previous package
-        if: startsWith(github.ref, 'refs/tags/') # run on only tags
-        run: >
-          npm deprecate
-          ${{steps.previous-package.outputs.ID}}
-          "Version no longer supported. Upgrade to @latest."
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          GITHUB_TOKEN: ${{github.token}}
+          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
