@@ -11,7 +11,7 @@ updates:
     reviewers:
       - devpow112
     commit-message:
-      prefix: chore(dependencies)
+      prefix: chore(deps)
       include: scope
   - package-ecosystem: npm
     directory: /
@@ -25,5 +25,5 @@ updates:
     reviewers:
       - devpow112
     commit-message:
-      prefix: chore(dependencies)
+      prefix: chore(deps)
       include: scope
