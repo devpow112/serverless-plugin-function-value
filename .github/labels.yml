@@ -8,7 +8,7 @@
   description: Improvements or additions to documentation
   color: 0075ca
 - name: duplicate
-  description: This issue or pull request already exists
+  description: Already exists
   color: cfd3d7
 - name: enhancement
   description: New feature or request
@@ -31,3 +31,9 @@
 - name: clean-up
   description: Clean-up or refactor of something already existing
   color: a7afe5
+- name: auto
+  description: Opened by an automated process
+  color: bdce3b
+- name: released
+  description: Included in a release
+  color: 307c07
