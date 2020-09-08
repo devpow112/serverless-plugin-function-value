@@ -6,6 +6,7 @@ updates:
       interval: daily
     rebase-strategy: auto
     labels:
+      - auto
       - dependencies
     reviewers:
       - devpow112
@@ -16,6 +17,7 @@ updates:
     versioning-strategy: increase
     rebase-strategy: auto
     labels:
+      - auto
       - dependencies
     reviewers:
       - devpow112
