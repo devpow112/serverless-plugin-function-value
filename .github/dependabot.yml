@@ -10,6 +10,9 @@ updates:
       - dependencies
     reviewers:
       - devpow112
+    commit-message:
+      prefix: chore(dependencies)
+      include: scope
   - package-ecosystem: npm
     directory: /
     schedule:
@@ -21,3 +24,6 @@ updates:
       - dependencies
     reviewers:
       - devpow112
+    commit-message:
+      prefix: chore(dependencies)
+      include: scope
