@@ -5,7 +5,20 @@
   ],
   "plugins": [
     "@semantic-release/commit-analyzer",
-    "@semantic-release/github",
+    [
+      "@semantic-release/github",
+      {
+        "labels": [
+          "auto"
+        ],
+        "releasedLabels": [
+          "released"
+        ],
+        "assignees": [
+          "devpow112"
+        ]
+      }
+    ],
     "@semantic-release/npm",
     "@semantic-release/release-notes-generator",
     [
