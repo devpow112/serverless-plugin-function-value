@@ -32,7 +32,9 @@ jobs:
       - name: Run build
         run: npm run build
       - name: Release
-        if: github.ref == 'refs/heads/main' # run on only main
+        if: >
+          github.ref == 'refs/heads/main' &&
+          !startsWith(github.event.head_commit.message, 'chore(release):')
         run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{secrets.SEMANTIC_RELEASE_TOKEN}}
