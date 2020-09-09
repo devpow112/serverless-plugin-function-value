@@ -11,6 +11,7 @@
         "releaseRules": [
           {
             "type": "chore",
+            "scope": "*deps",
             "release": "patch"
           },
           {
