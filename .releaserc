@@ -9,16 +9,14 @@
       {
         "preset": "conventionalcommits",
         "releaseRules": [
-          [
-            {
-              "type": "chore",
-              "release": "patch"
-            },
-            {
-              "type": "refactor",
-              "release": "patch"
-            }
-          ]
+          {
+            "type": "chore",
+            "release": "patch"
+          },
+          {
+            "type": "refactor",
+            "release": "patch"
+          }
         ]
       }
     ],
@@ -44,44 +42,42 @@
         "preset": "conventionalcommits",
         "presetConfig": {
           "types": [
-            [
-              {
-                "type": "feat",
-                "section": "Features"
-              },
-              {
-                "type": "fix",
-                "section": "Bug Fixes"
-              },
-              {
-                "type": "perf",
-                "section": "Performance Improvements"
-              },
-              {
-                "type": "revert",
-                "section": "Reverts"
-              },
-              {
-                "type": "docs",
-                "section": "Documentation"
-              },
-              {
-                "type": "chore",
-                "section": "Miscellaneous Chores"
-              },
-              {
-                "type": "refactor",
-                "section": "Code Refactoring"
-              },
-              {
-                "type": "test",
-                "section": "Tests"
-              },
-              {
-                "type": "build",
-                "section": "Build System"
-              }
-            ]
+            {
+              "type": "feat",
+              "section": "Features"
+            },
+            {
+              "type": "fix",
+              "section": "Bug Fixes"
+            },
+            {
+              "type": "perf",
+              "section": "Performance Improvements"
+            },
+            {
+              "type": "revert",
+              "section": "Reverts"
+            },
+            {
+              "type": "docs",
+              "section": "Documentation"
+            },
+            {
+              "type": "chore",
+              "section": "Miscellaneous Chores"
+            },
+            {
+              "type": "refactor",
+              "section": "Code Refactoring"
+            },
+            {
+              "type": "test",
+              "section": "Tests"
+            },
+            {
+              "type": "build",
+              "section": "Build System"
+            }
           ]
         }
       }
