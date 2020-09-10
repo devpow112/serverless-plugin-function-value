@@ -52,11 +52,12 @@ describe('plugin', () => {
   it('will debug log', async () => {
     process.env.SLS_DEBUG = 1;
 
-    const value = `fn.arn:${functionName}`;
+    const resolverName = 'fn.arn';
+    const value = `${resolverName}:${functionName}`;
     const variableResolvers = new Plugin(serverless).variableResolvers;
 
     for (let i = 0; i < 2; i++) {
-      await variableResolvers['fn.arn'].resolver(value);
+      await variableResolvers[resolverName].resolver(value);
 
       assert.calledOnce(serverless.cli.log);
     }
