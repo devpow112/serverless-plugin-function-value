@@ -1,12 +1,13 @@
-const serviceName = 'serverless-plugin-function-value';
+import { name } from '../package.json';
+
 const defaultVariableResolverOptions = {
-  serviceName,
+  serviceName: name,
   isDisabledAtPrepopulation: true
 };
 const logged = {};
 
 const format = (value, result) =>
-  `[${serviceName}] \${${value}} => ${JSON.stringify(result)}`;
+  `[${name}] \${${value}} => ${JSON.stringify(result)}`;
 
 export class FunctionValuePlugin {
   constructor(serverless) {
