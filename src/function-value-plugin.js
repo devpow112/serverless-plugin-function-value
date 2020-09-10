@@ -1,10 +1,10 @@
+import memoize from 'lodash.memoize';
 import { name } from '../package.json';
 
 const defaultVariableResolverOptions = {
   serviceName: name,
   isDisabledAtPrepopulation: true
 };
-const logged = {};
 
 const format = (value, result) =>
   `[${name}] \${${value}} => ${JSON.stringify(result)}`;
@@ -14,13 +14,9 @@ export class FunctionValuePlugin {
     if (!process.env.SLS_DEBUG) {
       this._log = () => { };
     } else {
-      this._log = (value, result) => {
-        if (!logged[value]) {
-          logged[value] = true;
+      const log = (value, result) => serverless.cli.log(format(value, result));
 
-          serverless.cli.log(format(value, result));
-        }
-      };
+      this._log = memoize(log);
     }
 
     this._naming = serverless.getProvider('aws').naming;
