@@ -6,17 +6,14 @@ const defaultVariableResolverOptions = {
   isDisabledAtPrepopulation: true
 };
 
-const format = (value, result) =>
-  `[${name}] \${${value}} => ${JSON.stringify(result)}`;
-
 export class FunctionValuePlugin {
   constructor(serverless) {
     if (!process.env.SLS_DEBUG) {
       this._log = () => { };
     } else {
-      const log = (value, result) => serverless.cli.log(format(value, result));
-
-      this._log = memoize(log);
+      this._log = memoize((value, result) => serverless.cli.log(
+        `[${name}] \${${value}} => ${JSON.stringify(result)}`
+      ));
     }
 
     this._naming = serverless.getProvider('aws').naming;
