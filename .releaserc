@@ -1,38 +1,23 @@
 {
   "tagFormat": "${version}",
-  "branches": [
-    "main"
-  ],
+  "branches": ["main"],
   "plugins": [
     [
       "@semantic-release/commit-analyzer",
       {
         "preset": "conventionalcommits",
         "releaseRules": [
-          {
-            "type": "chore",
-            "scope": "deps*",
-            "release": "patch"
-          },
-          {
-            "type": "refactor",
-            "release": "patch"
-          }
+          { "type": "chore", "scope": "deps*", "release": "patch" },
+          { "type": "refactor", "release": "patch" }
         ]
       }
     ],
     [
       "@semantic-release/github",
       {
-        "labels": [
-          "auto"
-        ],
-        "releasedLabels": [
-          "released"
-        ],
-        "assignees": [
-          "devpow112"
-        ],
+        "labels": ["auto"],
+        "releasedLabels": ["released"],
+        "assignees": ["devpow112"],
         "addReleases": "top"
       }
     ],
@@ -43,42 +28,15 @@
         "preset": "conventionalcommits",
         "presetConfig": {
           "types": [
-            {
-              "type": "feat",
-              "section": "Features"
-            },
-            {
-              "type": "fix",
-              "section": "Bug Fixes"
-            },
-            {
-              "type": "perf",
-              "section": "Performance Improvements"
-            },
-            {
-              "type": "revert",
-              "section": "Reverts"
-            },
-            {
-              "type": "docs",
-              "section": "Documentation"
-            },
-            {
-              "type": "chore",
-              "section": "Miscellaneous Chores"
-            },
-            {
-              "type": "refactor",
-              "section": "Code Refactoring"
-            },
-            {
-              "type": "test",
-              "section": "Tests"
-            },
-            {
-              "type": "build",
-              "section": "Build System"
-            }
+            { "type": "feat", "section": "Features" },
+            { "type": "fix", "section": "Bug Fixes" },
+            { "type": "perf", "section": "Performance Improvements" },
+            { "type": "revert", "section": "Reverts" },
+            { "type": "docs", "section": "Documentation" },
+            { "type": "chore", "section": "Miscellaneous Chores" },
+            { "type": "refactor", "section": "Code Refactoring" },
+            { "type": "test", "section": "Tests" },
+            { "type": "build", "section": "Build System" }
           ]
         }
       }
@@ -86,9 +44,7 @@
     [
       "@semantic-release/git",
       {
-        "assets": [
-          "package.json"
-        ],
+        "assets": ["package.json"],
         "message": "chore(release): ${nextRelease.version}"
       }
     ]
