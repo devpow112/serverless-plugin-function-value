@@ -21,7 +21,8 @@ describe('plugin', () => {
 
   [
     { type: 'arn', expected: { 'Fn::GetAtt': [logicalId, 'Arn'] } },
-    { type: 'name', expected: { Ref: logicalId } }
+    { type: 'name', expected: { Ref: logicalId } },
+    { type: 'logicalid', expected: logicalId }
   ].forEach(testData => {
     it(`will generate function ${testData.type} snippet`, async () => {
       const resolverKey = `fn.${testData.type}`;
