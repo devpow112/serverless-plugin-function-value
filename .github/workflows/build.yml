@@ -1,5 +1,7 @@
 name: build
 on:
+  schedule:
+    - cron: '0 0 * * 6'
   pull_request:
   push:
     branches:
@@ -33,7 +35,15 @@ jobs:
       - name: Run build
         run: npm run build
       - name: Release
-        if: github.ref == 'refs/heads/main'
+        if: >
+          github.ref == 'refs/heads/main' &&
+          (
+            github.event_name == 'schedule' ||
+            (
+              github.event_name == 'push' &&
+              startsWith(github.event.head_commit.message, 'fix')
+            )
+          )
         run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{secrets.SEMANTIC_RELEASE_TOKEN}}
