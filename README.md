@@ -8,8 +8,8 @@
 [![Node Version][Node Version Badge]](package.json#L35)
 
 Serverless framework plugin that will automatically generate AWS CloudFormation
-snippets to reference a functions `name` or `arn` value based on the Serverless
-internally generated Lambda logical ID.
+snippets to reference a functions **name**, **ARN** or **logical ID** value
+based on the Serverless internally generated Lambda logical ID.
 
 ## Installation
 
@@ -32,6 +32,8 @@ provider:
 resources:
   Resources:
     LambdaFunctionExecutor:
+        DependsOn:
+          - ${fn.logicalid:health}
         Type: Custom::LambdaFunctionExecutor
         Properties:
             ServiceToken: ${fn.arn:health}
@@ -43,11 +45,15 @@ functions:
 ```
 
 During processing the `${fn.*}` related items will be resolved to either the
-`Fn::GetAtt` for `${fn.arn:*}` or `Ref` for `${fn.name:*}`. The custom resource
-above would look like the below in the generated CloudFormation template.
+`Fn::GetAtt` for `${fn.arn:*}`, `Ref` for `${fn.name:*}` or simply the logical
+ID for `${fn.logicalid:*}`. The custom resource above would look like the below
+in the generated CloudFormation template.
 
 ```json
 "LambdaFunctionExecutor": {
+    "DependsOn": [
+      "HealthLambdaFunction"
+    ],
     "Type": "Custom::LambdaFunctionExecutor",
     "Properties": {
         "ServiceToken": {

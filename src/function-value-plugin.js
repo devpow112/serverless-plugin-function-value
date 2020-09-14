@@ -26,6 +26,10 @@ export class FunctionValuePlugin {
       'fn.name': {
         resolver: value => this._resolve(value, this._getLambdaNameObject),
         ...defaultVariableResolverOptions
+      },
+      'fn.logicalid': {
+        resolver: value => this._resolve(value, this._getLambdaLogicalIdString),
+        ...defaultVariableResolverOptions
       }
     };
   }
@@ -55,5 +59,9 @@ export class FunctionValuePlugin {
 
   _getLambdaNameObject(functionName) {
     return { Ref: this._getLambdaLogicalId(functionName) };
+  }
+
+  _getLambdaLogicalIdString(functionName) {
+    return this._getLambdaLogicalId(functionName);
   }
 }
