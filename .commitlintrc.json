@@ -17,6 +17,9 @@
                 "test",
                 "build"
             ]
-        ]
+        ],
+        "header-max-length": [1, "always", 50],
+        "body-max-line-length": [1, "always", 80],
+        "footer-max-line-length": [1, "always", 80]
     }
 }
