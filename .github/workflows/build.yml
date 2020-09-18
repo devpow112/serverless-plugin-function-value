@@ -20,7 +20,7 @@ jobs:
       - name: Get node version
         id: node
         run: echo "##[set-output name=VERSION;]$(cat .nvmrc)"
-      - name: Setup node
+      - name: Set up node
         uses: actions/setup-node@v2.1.1
         with:
           node-version: ${{steps.node.outputs.VERSION}}
