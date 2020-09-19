@@ -19,48 +19,76 @@ describe('plugin', () => {
     };
   });
 
-  [
-    { type: 'arn', expected: { 'Fn::GetAtt': [logicalId, 'Arn'] } },
-    { type: 'name', expected: { Ref: logicalId } },
-    { type: 'logicalid', expected: logicalId }
-  ].forEach(testData => {
-    it(`will generate function ${testData.type} snippet`, async () => {
-      const resolverKey = `fn.${testData.type}`;
-      const value = `${resolverKey}:${functionName}`;
-      const variableResolvers = new Plugin(serverless).variableResolvers;
-      const result = await variableResolvers[resolverKey].resolver(value);
+  describe('will generate snippet', () => {
+    [
+      { type: 'arn', expected: { 'Fn::GetAtt': [logicalId, 'Arn'] } },
+      { type: 'name', expected: { Ref: logicalId } },
+      { type: 'logicalid', expected: logicalId }
+    ].forEach(testData => {
+      it(testData.type, async () => {
+        const resolverKey = `fn.${testData.type}`;
+        const value = `${resolverKey}:${functionName}`;
+        const variableResolvers = new Plugin(serverless).variableResolvers;
+        const result = await variableResolvers[resolverKey].resolver(value);
 
-      expect(result).to.deep.equal(testData.expected);
-      assert.notCalled(serverless.cli.log);
+        expect(result).to.deep.equal(testData.expected);
+        assert.notCalled(serverless.cli.log);
+      });
     });
   });
 
-  it('will fail if function not found', async () => {
-    try {
-      const variableResolvers = new Plugin(serverless).variableResolvers;
+  describe('will debug log', () => {
+    beforeEach(() => {
+      process.env.SLS_DEBUG = '*';
+    });
 
-      await variableResolvers['fn.arn'].resolver('fn.arn:test');
-    } catch (err) {
-      expect(err.message).to.be.equal('Cannot resolve "test", does not exist');
-      assert.notCalled(serverless.cli.log);
+    afterEach(() => {
+      process.env.SLS_DEBUG = undefined;
+    });
 
-      return;
-    }
+    [
+      { type: 'arn' },
+      { type: 'name' },
+      { type: 'logicalid' }
+    ].forEach(testData => {
+      it(testData.type, async () => {
+        const resolverKey = `fn.${testData.type}`;
+        const value = `${resolverKey}:${functionName}`;
+        const variableResolvers = new Plugin(serverless).variableResolvers;
 
-    throw new Error('fail');
+        for (let i = 0; i < 2; i++) {
+          await variableResolvers[resolverKey].resolver(value);
+
+          assert.calledOnce(serverless.cli.log);
+        }
+      });
+    });
   });
 
-  it('will debug log', async () => {
-    process.env.SLS_DEBUG = 1;
+  describe('will fail if not found', () => {
+    [
+      { type: 'arn' },
+      { type: 'name' },
+      { type: 'logicalid' }
+    ].forEach(testData => {
+      it(testData.type, async () => {
+        try {
+          const resolverKey = `fn.${testData.type}`;
+          const value = `${resolverKey}:test`;
+          const variableResolvers = new Plugin(serverless).variableResolvers;
 
-    const resolverName = 'fn.arn';
-    const value = `${resolverName}:${functionName}`;
-    const variableResolvers = new Plugin(serverless).variableResolvers;
+          await variableResolvers[resolverKey].resolver(value);
+        } catch (err) {
+          const message = err.message;
 
-    for (let i = 0; i < 2; i++) {
-      await variableResolvers[resolverName].resolver(value);
+          expect(message).to.be.equal('Cannot resolve "test", does not exist');
+          assert.notCalled(serverless.cli.log);
 
-      assert.calledOnce(serverless.cli.log);
-    }
+          return;
+        }
+
+        throw new Error('fail');
+      });
+    });
   });
 });
