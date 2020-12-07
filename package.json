@@ -1,6 +1,6 @@
 {
   "name": "serverless-plugin-function-value",
-  "version": "1.1.21",
+  "version": "1.1.22",
   "description": "Serverless framework plugin that will automatically generate CloudFormation snippets to reference a functions name, ARN or logical ID value based on the generated logical ID used during creation of the CloudFormation templates",
   "main": "dist/index.js",
   "scripts": {
