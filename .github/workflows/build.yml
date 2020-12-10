@@ -20,7 +20,7 @@ jobs:
         id: node
         run: echo "##[set-output name=VERSION;]$(cat .nvmrc)"
       - name: Set up node
-        uses: actions/setup-node@v2.1.2
+        uses: actions/setup-node@v2.1.3
         with:
           node-version: ${{steps.node.outputs.VERSION}}
       - name: Install packages
