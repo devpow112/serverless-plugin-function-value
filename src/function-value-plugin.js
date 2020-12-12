@@ -11,24 +11,30 @@ export class FunctionValuePlugin {
     if (!process.env.SLS_DEBUG) {
       this._log = () => { };
     } else {
-      this._log = memoize((value, result) => serverless.cli.log(
+      this._log = (value, result) => serverless.cli.log(
         `[${name}] \${${value}} => ${JSON.stringify(result)}`
-      ));
+      );
     }
 
     this._naming = serverless.getProvider('aws').naming;
     this._functions = serverless.service.getAllFunctions();
     this.variableResolvers = {
       'fn.arn': {
-        resolver: value => this._resolve(value, this._getLambdaArnObject),
+        resolver: memoize(
+          value => this._resolve(value, this._getLambdaArnObject)
+        ),
         ...defaultVariableResolverOptions
       },
       'fn.name': {
-        resolver: value => this._resolve(value, this._getLambdaNameObject),
+        resolver: memoize(
+          value => this._resolve(value, this._getLambdaNameObject)
+        ),
         ...defaultVariableResolverOptions
       },
       'fn.logicalid': {
-        resolver: value => this._resolve(value, this._getLambdaLogicalIdString),
+        resolver: memoize(
+          value => this._resolve(value, this._getLambdaLogicalIdString)
+        ),
         ...defaultVariableResolverOptions
       }
     };
