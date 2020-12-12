@@ -23,17 +23,30 @@ describe('plugin', () => {
 
   describe('will generate snippet', () => {
     [
-      { type: 'arn', expected: { 'Fn::GetAtt': [logicalId, 'Arn'] } },
-      { type: 'name', expected: { Ref: logicalId } },
-      { type: 'logicalid', expected: logicalId }
+      {
+        type: resolverTypes[0],
+        expected: { 'Fn::GetAtt': [logicalId, 'Arn'] }
+      },
+      {
+        type: resolverTypes[1],
+        expected: { Ref: logicalId }
+      },
+      {
+        type: resolverTypes[2],
+        expected: logicalId
+      }
     ].forEach(resolverData => {
       it(resolverData.type, async () => {
         const resolverKey = `fn.${resolverData.type}`;
         const value = `${resolverKey}:${functionName}`;
         const variableResolvers = new Plugin(serverless).variableResolvers;
-        const result = await variableResolvers[resolverKey].resolver(value);
 
-        expect(result).to.deep.equal(resolverData.expected);
+        for (let i = 0; i < 2; i++) {
+          const result = await variableResolvers[resolverKey].resolver(value);
+
+          expect(result).to.deep.equal(resolverData.expected);
+        }
+
         assert.notCalled(serverless.cli.log);
       });
     });
@@ -56,9 +69,9 @@ describe('plugin', () => {
 
         for (let i = 0; i < 2; i++) {
           await variableResolvers[resolverKey].resolver(value);
-
-          assert.calledOnce(serverless.cli.log);
         }
+
+        assert.calledOnce(serverless.cli.log);
       });
     });
   });
