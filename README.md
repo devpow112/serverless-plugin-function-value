@@ -106,7 +106,7 @@ Execute formatter via `npm`.
 npm run format
 ```
 
-This will format based on [.eslintrc](.eslintrc) settings.
+This will format based on [.eslintrc.json](.eslintrc.json) settings.
 
 <!-- links -->
 [License Badge]: https://img.shields.io/github/license/devpow112/serverless-plugin-function-value
