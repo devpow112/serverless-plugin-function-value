@@ -20,6 +20,7 @@ jobs:
         run: |
           git fetch origin +refs/heads/$BRANCH:refs/heads/$BRANCH || true
           git checkout $BRANCH || git checkout -b $BRANCH
+          git reset --hard origin/main
       - name: Update license
         run: |
           sed -i -E "s/^(Copyright.*)[0-9]{4}(.*)$/\1$(date +%Y)\2/" LICENSE
