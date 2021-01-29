@@ -5,10 +5,14 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "babel --out-dir dist src",
-    "lint": "eslint .",
-    "format": "npm run lint --silent -- --fix",
-    "pretest": "commitlint --from origin/main --to HEAD",
-    "test": "npm run lint --silent && nyc mocha --colors"
+    "lint": "npm run -s lint:git && npm run -s lint:js && npm run -s lint:md",
+    "lint:js": "eslint .",
+    "lint:md": "markdownlint .",
+    "lint:git": "commitlint --from origin/main --to HEAD",
+    "format": "npm run -s format:js && npm run -s format:md",
+    "format:js": "npm run lint:js -s -- --fix",
+    "format:md": "npm run lint:md -s -- --fix",
+    "test": "npm run lint -s && nyc mocha --colors"
   },
   "repository": {
     "type": "git",
@@ -53,6 +57,7 @@
     "eslint-plugin-chai-friendly": "^0.6.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-mocha": "^8.0.0",
+    "markdownlint-cli": "^0.26.0",
     "mocha": "^8.2.1",
     "nyc": "^15.1.0",
     "semantic-release": "^17.3.7",
