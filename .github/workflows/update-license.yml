@@ -70,5 +70,5 @@ jobs:
             } else {
               console.log('Pull request already exists');
             }
-          github-token: ${{github.token}}
-          result-encoding: ${{secrets.UPDATE_LICENSE_TOKEN}}
+          github-token: ${{secrets.UPDATE_LICENSE_TOKEN}}
+          result-encoding: string
