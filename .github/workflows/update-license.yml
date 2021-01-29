@@ -20,13 +20,12 @@ jobs:
         run: |
           git fetch origin +refs/heads/$BRANCH:refs/heads/$BRANCH || true
           git checkout $BRANCH || git checkout -b $BRANCH
-          git reset --hard origin/main
       - name: Update license
         run: |
           sed -i -E "s/^(Copyright.*)[0-9]{4}(.*)$/\1$(date +%Y)\2/" LICENSE
       - name: Check for changes
         id: changes
-        run: >
+        run: |
           git diff --exit-code LICENSE || echo "::set-output name=exist::true"
       - name: Create commit
         if: steps.changes.outputs.exist
@@ -34,11 +33,11 @@ jobs:
           DATE=$(date +%Y)
           git reset --hard origin/main
           sed -i -E "s/^(Copyright.*)[0-9]{4}(.*)$/\1$DATE\2/" LICENSE
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git config user.name github-actions
+          git config user.email github-actions@github.com
           git add LICENSE
           git commit -m "chore(license): update year to $DATE"
-          git push --force origin $BRANCH
+          git push -f origin $BRANCH
       - name: Create pull request (if needed)
         if: steps.changes.outputs.exist
         uses: actions/github-script@v3.1.0
