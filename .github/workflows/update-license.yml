@@ -16,10 +16,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2.3.4
-      - name: Switch to branch
-        run: |
-          git fetch origin +refs/heads/$BRANCH:refs/heads/$BRANCH || true
-          git checkout $BRANCH || git checkout -b $BRANCH
       - name: Update license
         run: |
           sed -i -E "s/^(Copyright.*)[0-9]{4}(.*)$/\1$(date +%Y)\2/" LICENSE
@@ -27,48 +23,12 @@ jobs:
         id: changes
         run: |
           git diff --exit-code LICENSE || echo "::set-output name=exist::true"
-      - name: Create commit
+      - name: Push commit
         if: steps.changes.outputs.exist
         run: |
-          DATE=$(date +%Y)
-          git reset --hard origin/main
-          sed -i -E "s/^(Copyright.*)[0-9]{4}(.*)$/\1$DATE\2/" LICENSE
           git config user.name github-actions[bot]
           EMAIL=41898282+github-actions[bot]@users.noreply.github.com
           git config user.email $EMAIL
           git add LICENSE
-          git commit -m "chore(license): update year to $DATE"
-          git push -f origin $BRANCH
-      - name: Create pull request (if needed)
-        if: steps.changes.outputs.exist
-        uses: actions/github-script@v3.1.0
-        with:
-          script: |
-            const repositoryName = 'serverless-plugin-function-value';
-            const pullRequests = await github.pulls.list({
-              owner: '${{github.repository_owner}}',
-              repo: repositoryName,
-              head: '${{github.repository_owner}}:refs/heads/${{env.BRANCH}}',
-              base: 'refs/heads/main'
-            });
-            if (pullRequests.data.length === 0) {
-              const createResult = await github.pulls.create({
-                owner: '${{github.repository_owner}}',
-                repo: repositoryName,
-                title: `chore(license): update year`,
-                head: 'refs/heads/${{env.BRANCH}}',
-                base: 'refs/heads/main'
-              });
-              github.issues.addLabels({
-                owner: '${{github.repository_owner}}',
-                repo: repositoryName,
-                issue_number: createResult.data.number,
-                labels: ['auto']
-              });
-              console.log('Created new pull request');
-              return createResult.data.number;
-            } else {
-              console.log('Pull request already exists');
-            }
-          github-token: ${{secrets.UPDATE_LICENSE_TOKEN}}
-          result-encoding: string
+          git commit -m "chore(license): update year to $(date +%Y)"
+          git push
