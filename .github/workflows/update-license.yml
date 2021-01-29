@@ -16,6 +16,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2.3.4
+        with:
+          persist-credentials: false
       - name: Update license
         run: |
           sed -i -E "s/^(Copyright.*)[0-9]{4}(.*)$/\1$(date +%Y)\2/" LICENSE
@@ -26,9 +28,15 @@ jobs:
       - name: Push commit
         if: steps.changes.outputs.exist
         run: |
-          git config user.name github-actions[bot]
-          EMAIL=41898282+github-actions[bot]@users.noreply.github.com
-          git config user.email $EMAIL
+          git config user.name $COMMIT_USERNAME
+          git config user.email $COMMIT_EMAIL
           git add LICENSE
           git commit -m "chore(license): update year to $(date +%Y)"
-          git push
+          CREDENTIALS="x-access-token:$GITHUB_TOKEN"
+          URL="https://$CREDENTIALS@github.com/${{github.repository}}.git"
+          git remote set-url origin $URL
+          git push origin main
+        env:
+          GITHUB_TOKEN: ${{secrets.UPDATE_LICENSE_TOKEN}}
+          COMMIT_USERNAME: github-actions[bot]
+          COMMIT_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
