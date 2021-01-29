@@ -33,8 +33,9 @@ jobs:
           DATE=$(date +%Y)
           git reset --hard origin/main
           sed -i -E "s/^(Copyright.*)[0-9]{4}(.*)$/\1$DATE\2/" LICENSE
-          git config user.name github-actions
-          git config user.email github-actions@github.com
+          git config user.name github-actions[bot]
+          EMAIL=41898282+github-actions[bot]@users.noreply.github.com
+          git config user.email $EMAIL
           git add LICENSE
           git commit -m "chore(license): update year to $DATE"
           git push -f origin $BRANCH
@@ -70,4 +71,4 @@ jobs:
               console.log('Pull request already exists');
             }
           github-token: ${{github.token}}
-          result-encoding: string
+          result-encoding: ${{secrets.UPDATE_LICENSE_TOKEN}}
