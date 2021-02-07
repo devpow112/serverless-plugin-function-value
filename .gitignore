@@ -1,5 +1,6 @@
 .nyc_output/
 .vscode/
 coverage/
+debug.log
 dist/
 node_modules/
