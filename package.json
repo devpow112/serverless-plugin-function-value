@@ -10,9 +10,10 @@
     "lint:md": "markdownlint .",
     "lint:git": "commitlint --from origin/main --to HEAD",
     "format": "npm run -s format:js && npm run -s format:md",
-    "format:js": "npm run lint:js -s -- --fix",
-    "format:md": "npm run lint:md -s -- --fix",
-    "test": "npm run lint -s && nyc mocha --colors"
+    "format:js": "npm run -s lint:js -- --fix",
+    "format:md": "npm run -s lint:md -- --fix",
+    "test": "npm run -s lint && npm run -s test:unit",
+    "test:unit": "nyc mocha --colors"
   },
   "repository": {
     "type": "git",

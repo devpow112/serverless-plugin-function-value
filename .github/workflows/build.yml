@@ -37,8 +37,14 @@ jobs:
       - name: Install packages
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
-      - name: Run tests
-        run: npm test
+      - name: Run lint (javascript)
+        run: npm run lint:js
+      - name: Run lint (markdown)
+        run: npm run lint:md
+      - name: Run lint (git)
+        run: npm run lint:git
+      - name: Run tests (unit)
+        run:  npm run test:unit
       - name: Report coverage
         uses: coverallsapp/github-action@v1.1.2
         with:
