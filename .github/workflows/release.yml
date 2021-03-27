@@ -1,7 +1,7 @@
 name: Release
 on:
   schedule:
-    - cron: '0 15,20 * * *'
+    - cron: '0 15 * * *'
   workflow_run:
     workflows:
       - CI
@@ -13,7 +13,7 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
-    timeout-minutes: 2
+    timeout-minutes: 10
     if: >
       !startsWith(github.event.head_commit.message, 'chore(release):') && (
         github.event_name == 'schedule' || (
