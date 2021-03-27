@@ -1,11 +1,11 @@
 # Serverless Function Value Plugin
 
 [![License][License Badge]](LICENSE)
-[![Version][Version Badge]][Version Package]
 [![Build][CI Badge]][CI Workflow]
 [![Coverage][Coverage Badge]][Coverage Report]
 [![Vulnerabilities][Vulnerabilities Badge]][Vulnerabilities Report]
 [![Node Version][Node Version Badge]](package.json#L35)
+[![Version][Version Badge]][Version Package]
 
 Serverless framework plugin that will automatically generate AWS CloudFormation
 snippets to reference a functions **name**, **ARN** or **logical ID** value
@@ -135,13 +135,13 @@ npm run build
 ```
 
 <!-- links -->
-[License Badge]: https://img.shields.io/github/license/devpow112/serverless-plugin-function-value
+[License Badge]: https://img.shields.io/github/license/devpow112/serverless-plugin-function-value?label=License
 [Version Badge]: https://img.shields.io/npm/v/serverless-plugin-function-value
 [Version Package]: https://www.npmjs.com/serverless-plugin-function-value
 [Node Version Badge]: https://img.shields.io/node/v/serverless-plugin-function-value
-[CI Badge]: https://github.com/devpow112/serverless-plugin-function-value/workflows/build/badge.svg?branch=main
-[CI Workflow]: https://github.com/devpow112/serverless-plugin-function-value/actions?query=workflow%3Abuild+branch%3Amain
-[Coverage Badge]: https://coveralls.io/repos/github/devpow112/serverless-plugin-function-value/badge.svg?branch=main
+[CI Badge]: https://github.com/devpow112/serverless-plugin-function-value/actions/workflows/ci.yml/badge.svg?branch=main
+[CI Workflow]: https://github.com/devpow112/serverless-plugin-function-value/actions/workflows/ci.yml?query=branch%3Amain
+[Coverage Badge]: https://img.shields.io/coveralls/github/devpow112/serverless-plugin-function-value/main?label=Coverage
 [Coverage Report]: https://coveralls.io/github/devpow112/serverless-plugin-function-value?branch=main
-[Vulnerabilities Badge]: https://snyk.io/test/github/devpow112/serverless-plugin-function-value/badge.svg
+[Vulnerabilities Badge]: https://img.shields.io/snyk/vulnerabilities/github/devpow112/serverless-plugin-function-value?label=Vulnerabilities
 [Vulnerabilities Report]: https://snyk.io/test/github/devpow112/serverless-plugin-function-value
