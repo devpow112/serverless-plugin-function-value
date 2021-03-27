@@ -73,7 +73,7 @@ in the generated CloudFormation template.
 
 Development can be done on any machine that can install **Node.js**.
 
-### Building
+### Install Dependencies
 
 Install dependencies via `npm`.
 
@@ -81,10 +81,22 @@ Install dependencies via `npm`.
 npm i
 ```
 
-Run a build via `npm`:
+### Linting
+
+Execute linters via `npm`.
 
 ```bash
-npm run build
+# git, javascript and markdown
+npm run lint
+
+# git only
+npm run lint:git
+
+# javacript only
+npm run lint:js
+
+# markdown only
+npm run lint:md
 ```
 
 ### Testing
@@ -92,21 +104,35 @@ npm run build
 Execute tests via `npm`.
 
 ```bash
+# lint and unit tests
 npm test
-```
 
-This will run lint and unit tests. You will also be presented a basic coverage
-report after test execution.
+# unit tests only
+npm run test:unit
+```
 
 ### Formatting
 
-Execute formatter via `npm`.
+Execute formatters via `npm`.
 
 ```bash
+# javascript and markdown
 npm run format
+
+# javacript only
+npm run format:js
+
+# markdown only
+npm run format:md
 ```
 
-This will format based on [.eslintrc.json](.eslintrc.json) settings.
+### Building
+
+Run a build via `npm`.
+
+```bash
+npm run build
+```
 
 <!-- links -->
 [License Badge]: https://img.shields.io/github/license/devpow112/serverless-plugin-function-value
