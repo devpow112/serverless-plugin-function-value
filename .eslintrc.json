@@ -6,15 +6,9 @@
   },
   "parserOptions": {
     "sourceType": "module",
-    "ecmaVersion": 2018
+    "ecmaVersion": 2019
   },
-  "extends": [
-    "eslint:recommended",
-    "plugin:import/recommended"
-  ],
-  "plugins": [
-    "import"
-  ],
+  "extends": "eslint:recommended",
   "rules": {
     "arrow-body-style": "off",
     "array-bracket-spacing": [
@@ -37,34 +31,6 @@
       }
     ],
     "implicit-arrow-linebreak": "off",
-    "import/newline-after-import": "error",
-    "import/no-cycle": "error",
-    "import/no-unresolved": [
-      "error",
-      {
-        "commonjs": true,
-        "caseSensitive": true
-      }
-    ],
-    "import/no-extraneous-dependencies": [
-      "error",
-      {
-        "optionalDependencies": false,
-        "devDependencies": [
-          "test/**"
-        ]
-      }
-    ],
-    "import/order": [
-      "error",
-      {
-        "groups": [
-          "builtin",
-          "external",
-          "internal"
-        ]
-      }
-    ],
     "indent": [
       "error",
       2,

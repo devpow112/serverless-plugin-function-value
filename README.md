@@ -34,14 +34,14 @@ resources:
   Resources:
     LambdaFunctionExecutor:
         DependsOn:
-          - ${fn.logicalid:health}
+          - ${fn.logicalid:test}
         Type: Custom::LambdaFunctionExecutor
         Properties:
-            ServiceToken: ${fn.arn:health}
-            Name: ${fn.name:health}
+            ServiceToken: ${fn.arn:test}
+            Name: ${fn.name:test}
 
 functions:
-  health:
+  test:
     ...
 ```
 
@@ -53,18 +53,18 @@ in the generated CloudFormation template.
 ```json
 "LambdaFunctionExecutor": {
     "DependsOn": [
-      "HealthLambdaFunction"
+      "TestLambdaFunction"
     ],
     "Type": "Custom::LambdaFunctionExecutor",
     "Properties": {
         "ServiceToken": {
             "Fn::GetAtt": [
-                "HealthLambdaFunction",
+                "TestLambdaFunction",
                 "Arn"
             ]
         },
         "Name": {
-            "Ref": "HealthLambdaFunction"
+            "Ref": "TestLambdaFunction"
         }
     }
 }
@@ -105,11 +105,14 @@ npm run lint:md
 Execute tests via `npm`.
 
 ```bash
-# lint and unit tests
+# lint, unit tests and integration tests
 npm test
 
 # unit tests only
 npm run test:unit
+
+# integration tests only
+npm run test:integration
 ```
 
 ### Formatting

@@ -1,4 +1,5 @@
 .nyc_output/
+.serverless/
 .vscode/
 coverage/
 debug.log
