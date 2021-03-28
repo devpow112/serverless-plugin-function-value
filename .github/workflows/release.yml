@@ -15,12 +15,14 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     if: >
-      !startsWith(github.event.head_commit.message, 'chore(release):') && (
-        github.event_name == 'schedule' || (
-          github.event.workflow_run.conclusion == 'success' && (
-            startsWith(github.event.head_commit.message, 'fix') ||
-            startsWith(github.event.head_commit.message, 'Revert')
-          )
+      (
+        github.event_name == 'schedule' &&
+        !startsWith(github.event.head_commit.message, 'chore(release):')
+      ) || (
+        github.event_name == 'workflow_run' &&
+        github.event.workflow_run.conclusion == 'success' && (
+          startsWith(github.event.workflow_run.head_commit.message, 'fix') ||
+          startsWith(github.event.workflow_run.head_commit.message, 'Revert')
         )
       )
     steps:
