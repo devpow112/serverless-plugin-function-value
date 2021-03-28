@@ -1,12 +1,13 @@
 # Serverless Function Value Plugin
 
 [![License][License Badge]](LICENSE)
+[![Version][Version Badge]][Version Package]
 [![CI][CI Badge]][CI Workflow]
 [![Release][Release Badge]][Release Workflow]
 [![Coverage][Coverage Badge]][Coverage Report]
 [![Vulnerabilities][Vulnerabilities Badge]][Vulnerabilities Report]
 [![Node Version][Node Version Badge]](package.json#L41)
-[![Version][Version Badge]][Version Package]
+![Serverless Version][Serverless Version]
 
 Serverless framework plugin that will automatically generate AWS CloudFormation
 snippets to reference a functions **name**, **ARN** or **logical ID** value
@@ -140,7 +141,7 @@ npm run build
 
 <!-- links -->
 [License Badge]: https://img.shields.io/github/license/devpow112/serverless-plugin-function-value?label=License
-[Version Badge]: https://img.shields.io/npm/v/serverless-plugin-function-value
+[Version Badge]: https://img.shields.io/npm/v/serverless-plugin-function-value?label=Version
 [Version Package]: https://www.npmjs.com/serverless-plugin-function-value
 [Node Version Badge]: https://img.shields.io/node/v/serverless-plugin-function-value
 [CI Badge]: https://github.com/devpow112/serverless-plugin-function-value/actions/workflows/ci.yml/badge.svg?branch=main
@@ -151,3 +152,4 @@ npm run build
 [Coverage Report]: https://coveralls.io/github/devpow112/serverless-plugin-function-value?branch=main
 [Vulnerabilities Badge]: https://img.shields.io/snyk/vulnerabilities/github/devpow112/serverless-plugin-function-value?label=Vulnerabilities
 [Vulnerabilities Report]: https://snyk.io/test/github/devpow112/serverless-plugin-function-value
+[Serverless Version]: https://img.shields.io/github/package-json/dependency-version/devpow112/serverless-plugin-function-value/dev/serverless/main
