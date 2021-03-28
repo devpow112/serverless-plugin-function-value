@@ -1,9 +1,9 @@
 import { assert, spy, stub } from 'sinon';
 import { expect } from 'chai';
-import Plugin from '../src';
+import Plugin from '../../src';
 
-const functionName = 'health';
-const logicalId = 'HealthLambdaFunction';
+const functionName = 'test';
+const logicalId = 'TestLambdaFunction';
 const resolverTypes = ['arn', 'name', 'logicalid'];
 
 describe('plugin', () => {
@@ -81,14 +81,15 @@ describe('plugin', () => {
       it(resolverType, async () => {
         try {
           const resolverKey = `fn.${resolverType}`;
-          const value = `${resolverKey}:test`;
+          const value = `${resolverKey}:invalid`;
           const variableResolvers = new Plugin(serverless).variableResolvers;
 
           await variableResolvers[resolverKey].resolver(value);
         } catch (err) {
           const message = err.message;
+          const expectedMessage = 'Cannot resolve "invalid", does not exist';
 
-          expect(message).to.be.equal('Cannot resolve "test", does not exist');
+          expect(message).to.be.equal(expectedMessage);
           assert.notCalled(serverless.cli.log);
 
           return;
