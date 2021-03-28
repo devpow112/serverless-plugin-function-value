@@ -38,31 +38,33 @@ describe('serverless cloud formation template', () => {
     expect(dependsOn).to.deep.equal([logicalId]);
   });
 
-  it('has correct service token property', () => {
-    const properties = lambdaFunctionExecutor.Properties;
+  describe('has correct property', () => {
+    let properties;
 
-    expect(properties).to.be.not.null;
+    before(() => {
+      properties = lambdaFunctionExecutor.Properties;
 
-    const serviceToken = properties.ServiceToken;
+      expect(properties).to.be.not.null;
+    });
 
-    expect(serviceToken).to.be.not.null;
+    it('service token', () => {
+      const serviceToken = properties.ServiceToken;
 
-    const fnGetAtt = serviceToken['Fn::GetAtt'];
+      expect(serviceToken).to.be.not.null;
 
-    expect(fnGetAtt).to.deep.equal([logicalId, 'Arn']);
-  });
+      const fnGetAtt = serviceToken['Fn::GetAtt'];
 
-  it('has correct name property', () => {
-    const properties = lambdaFunctionExecutor.Properties;
+      expect(fnGetAtt).to.deep.equal([logicalId, 'Arn']);
+    });
 
-    expect(properties).to.be.not.null;
+    it('name', () => {
+      const name = properties.Name;
 
-    const name = properties.Name;
+      expect(name).to.be.not.null;
 
-    expect(name).to.be.not.null;
+      const ref = name.Ref;
 
-    const ref = name.Ref;
-
-    expect(ref).to.equal(logicalId);
+      expect(ref).to.equal(logicalId);
+    });
   });
 });
