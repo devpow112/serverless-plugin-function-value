@@ -1,7 +1,8 @@
 # Serverless Function Value Plugin
 
 [![License][License Badge]](LICENSE)
-[![Build][CI Badge]][CI Workflow]
+[![CI][CI Badge]][CI Workflow]
+[![Release][Release Badge]][Release Workflow]
 [![Coverage][Coverage Badge]][Coverage Report]
 [![Vulnerabilities][Vulnerabilities Badge]][Vulnerabilities Report]
 [![Node Version][Node Version Badge]](package.json#L41)
@@ -141,6 +142,8 @@ npm run build
 [Node Version Badge]: https://img.shields.io/node/v/serverless-plugin-function-value
 [CI Badge]: https://github.com/devpow112/serverless-plugin-function-value/actions/workflows/ci.yml/badge.svg?branch=main
 [CI Workflow]: https://github.com/devpow112/serverless-plugin-function-value/actions/workflows/ci.yml?query=branch%3Amain
+[Release Badge]: https://github.com/devpow112/serverless-plugin-function-value/actions/workflows/release.yml/badge.svg?branch=main
+[Release Workflow]: https://github.com/devpow112/serverless-plugin-function-value/actions/workflows/release.yml?query=branch%3Amain
 [Coverage Badge]: https://img.shields.io/coveralls/github/devpow112/serverless-plugin-function-value/main?label=Coverage
 [Coverage Report]: https://coveralls.io/github/devpow112/serverless-plugin-function-value?branch=main
 [Vulnerabilities Badge]: https://img.shields.io/snyk/vulnerabilities/github/devpow112/serverless-plugin-function-value?label=Vulnerabilities
