@@ -93,7 +93,7 @@ npm run lint
 # git only
 npm run lint:git
 
-# javacript only
+# javascript only
 npm run lint:js
 
 # markdown only
@@ -120,7 +120,7 @@ Execute formatters via `npm`.
 # javascript and markdown
 npm run format
 
-# javacript only
+# javascript only
 npm run format:js
 
 # markdown only
