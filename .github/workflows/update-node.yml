@@ -6,7 +6,7 @@ on:
     paths:
       - .github/workflows/update-node.yml
   schedule:
-    - cron: '0 19 * * *'
+    - cron: '0 15 * * *'
 jobs:
   update-node:
     name: Update Node
