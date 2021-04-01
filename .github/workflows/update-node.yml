@@ -20,7 +20,7 @@ jobs:
       - name: Determine node version
         id: node
         run: |
-          VERSION=$(curl -sSL https://resolve-node.vercel.app/lts)
+          VERSION=$(curl -sSf https://resolve-node.vercel.app/lts)
           VERSION=${VERSION#"v"}
           echo "::set-output name=version::$VERSION"
       - name: Update .nvmrc
