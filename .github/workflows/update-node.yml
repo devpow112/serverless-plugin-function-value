@@ -18,13 +18,15 @@ jobs:
         with:
           persist-credentials: false
       - name: Determine node version
-        id: node
+        id: node-version
         run: |
-          VERSION=$(curl -sSf https://resolve-node.vercel.app/lts)
-          VERSION=${VERSION#"v"}
-          echo "::set-output name=version::$VERSION"
+          OLD_VERSION=$(<.nvmrc)
+          NEW_VERSION=$(curl -sSf https://resolve-node.vercel.app/lts)
+          NEW_VERSION=${NEW_VERSION#'v'}
+          echo "::set-output name=new::$NEW_VERSION"
+          echo "::set-output name=old::$OLD_VERSION"
       - name: Update .nvmrc
-        run: echo ${{steps.node.outputs.version}} > .nvmrc
+        run: echo ${{steps.node-version.outputs.new}} > .nvmrc
       - name: Check for changes
         id: changes
         run: git diff --exit-code .nvmrc || echo '::set-output name=exist::true'
@@ -34,13 +36,14 @@ jobs:
           git config user.name $COMMIT_USERNAME
           git config user.email $COMMIT_EMAIL
           git add .nvmrc
-          git commit -m "chore(node): bump version to $VERSION"
-          CREDENTIALS="x-access-token:$GITHUB_TOKEN"
+          git commit -m "chore(node): bump from $OLD_VERSION to $NEW_VERSION"
+          CREDENTIALS="x-access-token:$UPDATE_NODE_TOKEN"
           URL="https://$CREDENTIALS@github.com/${{github.repository}}.git"
           git remote set-url origin $URL
           git push origin main
         env:
-          GITHUB_TOKEN: ${{secrets.UPDATE_NODE_TOKEN}}
+          UPDATE_NODE_TOKEN: ${{secrets.UPDATE_NODE_TOKEN}}
           COMMIT_USERNAME: github-actions[bot]
           COMMIT_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
-          VERSION: ${{steps.node.outputs.version}}
+          NEW_VERSION: ${{steps.node-version.outputs.new}}
+          OLD_VERSION: ${{steps.node-version.outputs.old}}
