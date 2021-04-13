@@ -12,7 +12,9 @@ const logicalId = 'TestLambdaFunction';
 describe('serverless cloud formation template', () => {
   let lambdaFunctionExecutor;
 
-  before(async () => {
+  before(async function() {
+    this.timeout(30000);
+
     await exec('npx serverless package', options);
 
     const templateFileName = 'cloudformation-template-update-stack.json';

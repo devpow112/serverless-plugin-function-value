@@ -1,6 +1,6 @@
 {
   "slow": 10,
-  "timeout": 30000,
+  "timeout": 50,
   "require": "@babel/register",
   "colors": true
 }
