@@ -1,6 +1,8 @@
 name: CI
 on:
   pull_request:
+    branches:
+      - main
   push:
     branches:
       - main
@@ -103,5 +105,6 @@ jobs:
         uses: github/codeql-action/init@v1
         with:
           languages: javascript
+          config-file: .github/codeql.yml
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v1
