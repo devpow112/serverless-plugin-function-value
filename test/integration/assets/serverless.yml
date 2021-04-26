@@ -1,0 +1,23 @@
+service: integration-test
+
+configValidationMode: error
+
+plugins:
+  - ../../../../dist
+
+provider:
+  name: aws
+
+resources:
+  Resources:
+    LambdaFunctionExecutor:
+        DependsOn:
+          - ${fn.logicalid:test}
+        Type: Custom::LambdaFunctionExecutor
+        Properties:
+            ServiceToken: ${fn.arn:test}
+            Name: ${fn.name:test}
+
+functions:
+  test:
+    handler: src/handler/test.handler

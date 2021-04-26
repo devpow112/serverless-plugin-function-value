@@ -1,6 +1,6 @@
 {
-  "spec": "test/**/*.spec.js",
   "slow": 10,
-  "timeout": 100,
-  "require": "@babel/register"
+  "timeout": 50,
+  "require": "@babel/register",
+  "colors": true
 }
