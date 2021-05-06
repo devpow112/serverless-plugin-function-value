@@ -7,6 +7,8 @@ on:
       - .github/workflows/update-node.yml
   schedule:
     - cron: '0 15 * * *'
+permissions:
+  contents: write
 jobs:
   update-node:
     name: Update Node
