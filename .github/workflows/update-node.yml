@@ -1,10 +1,8 @@
 name: Update Node
 on:
   push:
-    branches:
-      - main
-    paths:
-      - .github/workflows/update-node.yml
+    branches: main
+    paths: .github/workflows/update-node.yml
   schedule:
     - cron: '0 15 * * *'
 permissions:
