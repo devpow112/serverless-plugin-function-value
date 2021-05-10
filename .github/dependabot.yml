@@ -8,8 +8,7 @@ updates:
     labels:
       - auto
       - dependencies
-    reviewers:
-      - devpow112
+    reviewers: devpow112
     commit-message:
       prefix: build
       include: scope
@@ -22,8 +21,7 @@ updates:
     labels:
       - auto
       - dependencies
-    reviewers:
-      - devpow112
+    reviewers: devpow112
     commit-message:
       prefix: chore
       include: scope
