@@ -8,6 +8,7 @@ on:
     types: completed
 permissions:
   contents: read
+concurrency: release
 jobs:
   release:
     name: Release
