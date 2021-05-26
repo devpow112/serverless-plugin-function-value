@@ -1,0 +1,20 @@
+name: Pull Request
+on:
+  pull_request:
+    branches: main
+permissions:
+  contents: read
+  pull-requests: write
+concurrency:
+  group: pull-request-${{github.ref}}
+jobs:
+  label:
+    name: Apply Labels
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Apply labels
+        uses: actions/labeler@v3.0.0
+        with:
+          repo-token: ${{github.token}}
+          sync-labels: true

@@ -1,0 +1,10 @@
+javascript:
+  - 'package-lock.json'
+  - 'package.json'
+  - '**/*.js'
+github-actions:
+  - '.github/workflows/*'
+documentation:
+  - '.github/CODEOWNERS'
+  - 'LICENSE'
+  - '*.md'
