@@ -67,6 +67,6 @@
     "nyc": "^15.1.0",
     "semantic-release": "^17.4.3",
     "serverless": "^2.43.0",
-    "sinon": "^10.0.1"
+    "sinon": "^11.1.1"
   }
 }
