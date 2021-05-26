@@ -8,6 +8,7 @@ updates:
     labels:
       - auto
       - dependencies
+      - github-actions
     reviewers:
       - devpow112
     commit-message:
@@ -22,6 +23,7 @@ updates:
     labels:
       - auto
       - dependencies
+      - javascript
     reviewers:
       - devpow112
     commit-message:
