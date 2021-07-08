@@ -5,10 +5,7 @@ on:
   workflow_run:
     workflows: CI
     types: completed
-    branches:
-      - main
-      - '[0-9]+.x'
-      - '[0-9]+.[0-9]+.x'
+    branches: main
 permissions:
   contents: read
 concurrency: release
@@ -34,7 +31,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2.3.4
         with:
-          ref: ${{github.event.workflow_run.head_branch}}
           persist-credentials: false
       - name: Get node version
         id: node
