@@ -23,14 +23,8 @@ jobs:
         uses: actions/setup-node@v2.3.0
         with:
           node-version: ${{steps.node.outputs.version}}
-      - name: Set up cache
-        uses: actions/cache@v2.1.6
-        id: cache
-        with:
-          path: '**/node_modules'
-          key: npm-${{hashFiles('**/package-lock.json')}}
+          cache: npm
       - name: Install packages
-        if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
       - name: Run lint (JavaScript)
         run: npm run lint:js
@@ -52,14 +46,8 @@ jobs:
         uses: actions/setup-node@v2.3.0
         with:
           node-version: ${{steps.node.outputs.version}}
-      - name: Set up cache
-        uses: actions/cache@v2.1.6
-        id: cache
-        with:
-          path: '**/node_modules'
-          key: npm-${{hashFiles('**/package-lock.json')}}
+          cache: npm
       - name: Install packages
-        if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
       - name: Run tests (unit)
         run:  npm run test:unit
@@ -83,14 +71,8 @@ jobs:
         uses: actions/setup-node@v2.3.0
         with:
           node-version: ${{steps.node.outputs.version}}
-      - name: Set up cache
-        uses: actions/cache@v2.1.6
-        id: cache
-        with:
-          path: '**/node_modules'
-          key: npm-${{hashFiles('**/package-lock.json')}}
+          cache: npm
       - name: Install packages
-        if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
       - name: Run build
         run: npm run build
