@@ -1,10 +1,10 @@
-import cildProcess from 'child_process';
+import childProcess from 'child_process';
 import { expect } from 'chai';
 import { open } from 'fs/promises';
 import { promisify } from 'util';
 import { resolve } from 'path';
 
-const exec = promisify(cildProcess.exec);
+const exec = promisify(childProcess.exec);
 const assetPath = resolve(__dirname, 'assets');
 const options = { cwd: assetPath, stdio: 'inherit' };
 const logicalId = 'TestLambdaFunction';
