@@ -13,8 +13,8 @@
     "format:js": "npm run -s lint:js -- --fix",
     "format:md": "npm run -s lint:md -- --fix",
     "test": "run-s -s lint test:unit test:integration",
-    "test:unit": "nyc mocha test/unit/*.spec.js",
-    "test:integration": "npm run -s build && mocha test/integration/*.spec.js"
+    "test:unit": "nyc mocha test/unit/*.test.js",
+    "test:integration": "npm run -s build && mocha test/integration/*.test.js"
   },
   "repository": {
     "type": "git",
