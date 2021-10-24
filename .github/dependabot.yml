@@ -4,6 +4,9 @@ updates:
     directory: /
     schedule:
       interval: weekly
+      day: monday
+      time: '04:00'
+      timezone: America/Toronto
     rebase-strategy: auto
     labels:
       - auto
@@ -18,6 +21,9 @@ updates:
     directory: /
     schedule:
       interval: weekly
+      day: monday
+      time: '04:00'
+      timezone: America/Toronto
     versioning-strategy: increase
     rebase-strategy: auto
     labels:
