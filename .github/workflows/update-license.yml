@@ -41,7 +41,7 @@ jobs:
           git remote set-url origin $URL
           git push origin main
         env:
-          GITHUB_TOKEN: ${{secrets.UPDATE_LICENSE_TOKEN}}
+          GITHUB_TOKEN: ${{secrets.PERSONAL_GITHUB_TOKEN}}
           COMMIT_USERNAME: github-actions[bot]
           COMMIT_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
           YEAR: ${{steps.year.outputs.value}}

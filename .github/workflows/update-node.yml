@@ -38,12 +38,12 @@ jobs:
           git config user.email $COMMIT_EMAIL
           git add .nvmrc
           git commit -m "chore(node): bump from $OLD_VERSION to $NEW_VERSION"
-          CREDENTIALS="x-access-token:$UPDATE_NODE_TOKEN"
+          CREDENTIALS="x-access-token:$GITHUB_TOKEN"
           URL="https://$CREDENTIALS@github.com/${{github.repository}}.git"
           git remote set-url origin $URL
           git push origin main
         env:
-          UPDATE_NODE_TOKEN: ${{secrets.UPDATE_NODE_TOKEN}}
+          GITHUB_TOKEN: ${{secrets.PERSONAL_GITHUB_TOKEN}}
           COMMIT_USERNAME: github-actions[bot]
           COMMIT_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
           NEW_VERSION: ${{steps.node-version.outputs.new}}
