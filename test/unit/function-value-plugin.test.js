@@ -22,34 +22,32 @@ describe('plugin', () => {
   });
 
   describe('will generate snippet', () => {
-    [
-      {
-        type: resolverTypes[0],
-        expected: { 'Fn::GetAtt': [logicalId, 'Arn'] }
-      },
-      {
-        type: resolverTypes[1],
-        expected: { Ref: logicalId }
-      },
-      {
-        type: resolverTypes[2],
-        expected: logicalId
-      }
-    ].forEach(resolverData => {
-      it(resolverData.type, async () => {
-        const resolverKey = `fn.${resolverData.type}`;
+    const resolverSnippets = [{
+      type: resolverTypes[0],
+      expected: { 'Fn::GetAtt': [logicalId, 'Arn'] }
+    }, {
+      type: resolverTypes[1],
+      expected: { Ref: logicalId }
+    }, {
+      type: resolverTypes[2],
+      expected: logicalId
+    }];
+
+    for (const resolverSnippet of resolverSnippets) {
+      it(resolverSnippet.type, async () => {
+        const resolverKey = `fn.${resolverSnippet.type}`;
         const value = `${resolverKey}:${functionName}`;
         const variableResolvers = new Plugin(serverless).variableResolvers;
 
         for (let i = 0; i < 2; i++) {
           const result = await variableResolvers[resolverKey].resolver(value);
 
-          expect(result).to.deep.equal(resolverData.expected);
+          expect(result).to.deep.equal(resolverSnippet.expected);
         }
 
         assert.notCalled(serverless.cli.log);
       });
-    });
+    }
   });
 
   describe('will debug log', () => {
@@ -61,7 +59,7 @@ describe('plugin', () => {
       process.env.SLS_DEBUG = undefined;
     });
 
-    resolverTypes.forEach(resolverType => {
+    for (const resolverType of resolverTypes) {
       it(resolverType, async () => {
         const resolverKey = `fn.${resolverType}`;
         const value = `${resolverKey}:${functionName}`;
@@ -73,11 +71,11 @@ describe('plugin', () => {
 
         assert.calledOnce(serverless.cli.log);
       });
-    });
+    }
   });
 
   describe('will fail if not found', () => {
-    resolverTypes.forEach(resolverType => {
+    for (const resolverType of resolverTypes) {
       it(resolverType, async () => {
         try {
           const resolverKey = `fn.${resolverType}`;
@@ -97,6 +95,6 @@ describe('plugin', () => {
 
         throw new Error('fail');
       });
-    });
+    }
   });
 });
