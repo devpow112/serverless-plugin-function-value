@@ -8,9 +8,7 @@ const defaultVariableResolverOptions = {
 
 export class FunctionValuePlugin {
   constructor(serverless) {
-    if (!process.env.SLS_DEBUG) {
-      this._log = () => {};
-    } else {
+    if (process.env.SLS_DEBUG) {
       this._log = (value, result) => serverless.cli.log(
         `[${name}] \${${value}} => ${JSON.stringify(result)}`
       );
@@ -46,7 +44,7 @@ export class FunctionValuePlugin {
     const functionName = value.replace(/^.*:/, '');
     const result = resolver(functionName);
 
-    this._log(value, result);
+    this._log?.(value, result);
 
     return Promise.resolve(result);
   }
