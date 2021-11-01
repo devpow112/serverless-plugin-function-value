@@ -73,7 +73,8 @@ in the generated CloudFormation template.
 
 ## Development
 
-Development can be done on any machine that can install **Node.js**.
+Development can be done on any machine that can install Node.js. Only the latest
+LTS version is tested against.
 
 ### Install Dependencies
 
