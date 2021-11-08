@@ -68,6 +68,6 @@
     "rimraf": "^3.0.2",
     "semantic-release": "^18.0.0",
     "serverless": "^2.64.1",
-    "sinon": "^11.1.2"
+    "sinon": "^12.0.1"
   }
 }
