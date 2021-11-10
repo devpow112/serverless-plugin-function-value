@@ -12,8 +12,6 @@ updates:
       - auto
       - dependencies
       - github-actions
-    reviewers:
-      - devpow112
     commit-message:
       prefix: build
       include: scope
@@ -30,8 +28,6 @@ updates:
       - auto
       - dependencies
       - javascript
-    reviewers:
-      - devpow112
     commit-message:
       prefix: chore
       include: scope
