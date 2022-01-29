@@ -27,6 +27,10 @@ jobs:
           NEW_VERSION=${NEW_VERSION#'v'}
           echo "::set-output name=new::$NEW_VERSION"
           echo "::set-output name=old::$OLD_VERSION"
+      - name: Switch to '${{env.BRANCH}}'
+        run: |
+          git fetch origin +refs/heads/$BRANCH:refs/heads/$BRANCH || true
+          git checkout $BRANCH || git checkout -b $BRANCH
       - name: Update .nvmrc
         run: echo ${{steps.node-version.outputs.new}} > .nvmrc
       - name: Check for changes
