@@ -34,17 +34,14 @@ jobs:
       - name: Push commit
         if: steps.changes.outputs.exist
         run: |
-          git config user.name $COMMIT_USERNAME
-          git config user.email $COMMIT_EMAIL
+          git config user.name ${{secrets.AUTOMATION_USER}}
+          git config user.email ${{secrets.AUTOMATION_EMAIL}}
           git add .nvmrc
           git commit -m "chore(node): bump from $OLD_VERSION to $NEW_VERSION"
-          CREDENTIALS="x-access-token:$GITHUB_TOKEN"
+          CREDENTIALS="x-access-token:${{secrets.AUTOMATION_TOKEN}}"
           URL="https://$CREDENTIALS@github.com/${{github.repository}}.git"
           git remote set-url origin $URL
           git push origin main
         env:
-          GITHUB_TOKEN: ${{secrets.PERSONAL_GITHUB_TOKEN}}
-          COMMIT_USERNAME: github-actions[bot]
-          COMMIT_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
           NEW_VERSION: ${{steps.node-version.outputs.new}}
           OLD_VERSION: ${{steps.node-version.outputs.old}}
