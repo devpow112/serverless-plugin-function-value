@@ -2,7 +2,7 @@
   "name": "serverless-plugin-function-value",
   "version": "1.3.3",
   "description": "Serverless framework plugin that will automatically generate AWS CloudFormation snippets to reference a functions name, ARN or logical ID value based on the internally generated Lambda logical ID",
-  "main": "dist/index.js",
+  "main": "dist/function-value-plugin.js",
   "scripts": {
     "build": "rimraf dist/ && babel --verbose --out-dir dist src",
     "lint": "run-s -s lint:git lint:js lint:md",
@@ -46,7 +46,7 @@
     "lodash.memoize": "^4.1.2"
   },
   "peerDependencies": {
-    "serverless": "^2.72.2"
+    "serverless": "^3.0.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.16.8",
@@ -69,7 +69,7 @@
     "nyc": "^15.1.0",
     "rimraf": "^3.0.2",
     "semantic-release": "^19.0.2",
-    "serverless": "^2.72.2",
+    "serverless": "^3.0.1",
     "sinon": "^13.0.0"
   }
 }

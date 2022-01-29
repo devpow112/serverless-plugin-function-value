@@ -11,7 +11,9 @@
 
 Serverless framework plugin that will automatically generate AWS CloudFormation
 snippets to reference a functions **name**, **ARN** or **logical ID** value
-based on the internally generated Lambda logical ID.
+based on the internally generated Lambda logical ID. All **2.x** versions
+support only Serverless **3.x**. For Serverless **2.x** please use the **1.x**
+versions.
 
 ## Installation
 

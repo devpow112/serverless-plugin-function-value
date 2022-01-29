@@ -1,9 +1,9 @@
 service: integration-test
-
+frameworkVersion: '3'
 configValidationMode: error
 
 plugins:
-  - ../../../../dist
+  - ../../../
 
 provider:
   name: aws

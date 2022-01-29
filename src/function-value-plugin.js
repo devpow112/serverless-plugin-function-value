@@ -1,71 +1,48 @@
-import memoize from 'lodash.memoize';
-import { name } from '../package.json';
+const formatLog = (resolver, address, result) =>
+  `\${${resolver}:${address}} => ${JSON.stringify(result)}`;
 
-const defaultVariableResolverOptions = {
-  serviceName: name,
-  isDisabledAtPrepopulation: true
-};
+export default class FunctionValuePlugin {
+  constructor(serverless, _, { log }) {
+    const naming = serverless.getProvider('aws').naming;
+    const functions = serverless.service.getAllFunctions();
+    const classes = serverless.classes;
 
-export class FunctionValuePlugin {
-  constructor(serverless) {
-    if (process.env.SLS_DEBUG) {
-      this._log = (value, result) => serverless.cli.log(
-        `[${name}] \${${value}} => ${JSON.stringify(result)}`
-      );
-    }
+    const getLambdaLogicalId = address => {
+      if (!functions.includes(address)) {
+        throw new classes.Error(`Function "${address}" not defined`);
+      }
 
-    this._naming = serverless.getProvider('aws').naming;
-    this._functions = serverless.service.getAllFunctions();
-    this.variableResolvers = {
+      return naming.getLambdaLogicalId(address);
+    };
+
+    this.configurationVariablesSources = {
       'fn.arn': {
-        resolver: memoize(
-          value => this._resolve(value, this._getLambdaArnObject)
-        ),
-        ...defaultVariableResolverOptions
+        resolve: ({ address }) => {
+          const result = { 'Fn::GetAtt': [getLambdaLogicalId(address), 'Arn'] };
+
+          log.debug(formatLog('fn.arn', address, result));
+
+          return { value: result };
+        }
       },
       'fn.name': {
-        resolver: memoize(
-          value => this._resolve(value, this._getLambdaNameObject)
-        ),
-        ...defaultVariableResolverOptions
+        resolve: ({ address }) => {
+          const result = { Ref: getLambdaLogicalId(address) };
+
+          log.debug(formatLog('fn.name', address, result));
+
+          return { value: result };
+        }
       },
       'fn.logicalid': {
-        resolver: memoize(
-          value => this._resolve(value, this._getLambdaLogicalIdString)
-        ),
-        ...defaultVariableResolverOptions
+        resolve: ({ address }) => {
+          const result = getLambdaLogicalId(address);
+
+          log.debug(formatLog('fn.logicalid', address, result));
+
+          return { value: result };
+        }
       }
     };
-  }
-
-  _resolve(value, resolver) {
-    resolver = resolver.bind(this);
-
-    const functionName = value.replace(/^.*:/, '');
-    const result = resolver(functionName);
-
-    this._log?.(value, result);
-
-    return Promise.resolve(result);
-  }
-
-  _getLambdaLogicalId(functionName) {
-    if (!this._functions.includes(functionName)) {
-      throw new Error(`Cannot resolve "${functionName}", does not exist`);
-    }
-
-    return this._naming.getLambdaLogicalId(functionName);
-  }
-
-  _getLambdaArnObject(functionName) {
-    return { 'Fn::GetAtt': [this._getLambdaLogicalId(functionName), 'Arn'] };
-  }
-
-  _getLambdaNameObject(functionName) {
-    return { Ref: this._getLambdaLogicalId(functionName) };
-  }
-
-  _getLambdaLogicalIdString(functionName) {
-    return this._getLambdaLogicalId(functionName);
   }
 }
