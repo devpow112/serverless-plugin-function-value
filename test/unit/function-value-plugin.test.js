@@ -1,24 +1,30 @@
-import { assert, spy, stub } from 'sinon';
+import { spy, stub } from 'sinon';
 import { expect } from 'chai';
-import Plugin from '../../src';
+import Plugin from '../../src/function-value-plugin.js';
 
 const functionName = 'test';
 const logicalId = 'TestLambdaFunction';
 const resolverTypes = ['arn', 'name', 'logicalid'];
+const errorMessage = 'Function "invalid" not defined';
 
 describe('plugin', () => {
+  let log;
   let serverless;
+  let variableSources;
 
   beforeEach(() => {
-    const provider = {
-      naming: { getLambdaLogicalId: stub().returns(logicalId) }
+    log = { debug: spy() };
+    serverless = {
+      classes: { Error },
+      service: { getAllFunctions: stub().returns([functionName]) },
+      getProvider: stub().returns({
+        naming: { getLambdaLogicalId: stub().returns(logicalId) }
+      })
     };
 
-    serverless = {
-      cli: { log: spy() },
-      service: { getAllFunctions: stub().returns([functionName]) },
-      getProvider: stub().returns(provider)
-    };
+    const plugin = new Plugin(serverless, null, { log });
+
+    variableSources = plugin.configurationVariablesSources;
   });
 
   describe('will generate snippet', () => {
@@ -35,41 +41,11 @@ describe('plugin', () => {
 
     for (const resolverSnippet of resolverSnippets) {
       it(resolverSnippet.type, async () => {
-        const resolverKey = `fn.${resolverSnippet.type}`;
-        const value = `${resolverKey}:${functionName}`;
-        const variableResolvers = new Plugin(serverless).variableResolvers;
+        const variableSource = variableSources[`fn.${resolverSnippet.type}`];
+        const result = await variableSource.resolve({ address: functionName });
 
-        for (let i = 0; i < 2; i++) {
-          const result = await variableResolvers[resolverKey].resolver(value);
-
-          expect(result).to.deep.equal(resolverSnippet.expected);
-        }
-
-        assert.notCalled(serverless.cli.log);
-      });
-    }
-  });
-
-  describe('will debug log', () => {
-    beforeEach(() => {
-      process.env.SLS_DEBUG = '*';
-    });
-
-    afterEach(() => {
-      process.env.SLS_DEBUG = undefined;
-    });
-
-    for (const resolverType of resolverTypes) {
-      it(resolverType, async () => {
-        const resolverKey = `fn.${resolverType}`;
-        const value = `${resolverKey}:${functionName}`;
-        const variableResolvers = new Plugin(serverless).variableResolvers;
-
-        for (let i = 0; i < 2; i++) {
-          await variableResolvers[resolverKey].resolver(value);
-        }
-
-        assert.calledOnce(serverless.cli.log);
+        expect(result.value).to.deep.equal(resolverSnippet.expected);
+        expect(log.debug.calledOnce).to.be.true;
       });
     }
   });
@@ -78,17 +54,14 @@ describe('plugin', () => {
     for (const resolverType of resolverTypes) {
       it(resolverType, async () => {
         try {
-          const resolverKey = `fn.${resolverType}`;
-          const value = `${resolverKey}:invalid`;
-          const variableResolvers = new Plugin(serverless).variableResolvers;
+          const variableSource = variableSources[`fn.${resolverType}`];
 
-          await variableResolvers[resolverKey].resolver(value);
+          await variableSource.resolve({ address: 'invalid' });
         } catch (err) {
           const message = err.message;
-          const expectedMessage = 'Cannot resolve "invalid", does not exist';
 
-          expect(message).to.be.equal(expectedMessage);
-          assert.notCalled(serverless.cli.log);
+          expect(message).to.be.equal(errorMessage);
+          expect(log.debug.called).to.be.false;
 
           return;
         }
