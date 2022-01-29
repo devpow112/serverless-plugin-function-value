@@ -7,7 +7,7 @@
 [![Coverage][Coverage Badge]][Coverage Report]
 [![Vulnerabilities][Vulnerabilities Badge]][Vulnerabilities Report]
 [![Node Version][Node Version Badge]](package.json#L42)
-![Serverless Version][Serverless Version]
+[![Serverless Version][Serverless Version]](https://serverless.com)
 
 Serverless framework plugin that will automatically generate AWS CloudFormation
 snippets to reference a functions **name**, **ARN** or **logical ID** value
