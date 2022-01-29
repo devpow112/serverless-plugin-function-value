@@ -37,22 +37,25 @@ jobs:
         if: steps.changes.outputs.exist
         run: |
           git reset --hard origin/main
-          sed -i -E "s/$REGEX/\1${{steps.year.outputs.value}}\2/" LICENSE
+          sed -i -E "s/$REGEX/\1$YEAR\2/" LICENSE
           git config user.name ${{secrets.AUTOMATION_USER}}
           git config user.email ${{secrets.AUTOMATION_EMAIL}}
           git add LICENSE
-          git commit -m 'Update license year to ${{steps.year.outputs.value}}'
+          git commit -m "chore(license): update year to $YEAR"
           git push --force origin $BRANCH
+        env:
+          YEAR: ${{steps.year.outputs.value}}
       - name: Create pull request
         if: steps.changes.outputs.exist
         uses: actions/github-script@v5.1.0
         with:
           script: |
-            const version = '${{steps.year.outputs.value}}';
-            const title = `Update license year to ${version}`;
+            const year = '${{steps.year.outputs.value}}';
+            const title = `chore(license): update year to ${year}`;
             const [owner, repo] = '${{github.repository}}'.split('/');
             const base = 'refs/heads/main';
             const head = 'refs/heads/${{env.BRANCH}}';
+            const labels = ['auto'];
             const pullRequests = await github.rest.pulls.list({
               head: `${owner}:${head}`,
               owner, repo, base
@@ -63,7 +66,7 @@ jobs:
               });
               github.rest.issues.addLabels({
                 issue_number: createResult.data.number,
-                owner, repo, labels: ['auto']
+                owner, repo, labels
               });
               console.log('Created new pull request');
               return createResult.data.number;
@@ -71,7 +74,7 @@ jobs:
               const prNumber = pullRequests.data[0].number;
               github.rest.issues.update({
                 issue_number: prNumber,
-                title, owner, repo
+                title, owner, repo, labels
               });
               console.log(`Pull request already exists, updated #${prNumber}`);
               return prNumber;
