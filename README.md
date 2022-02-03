@@ -17,13 +17,13 @@ versions.
 
 ## Installation
 
-```bash
+```sh
 npm i -D serverless-plugin-function-value
 ```
 
 ## Usage
 
-```yaml
+```yml
 service: test
 
 plugins:
@@ -82,7 +82,7 @@ LTS version is tested against.
 
 Install dependencies via `npm`.
 
-```bash
+```sh
 npm i
 ```
 
@@ -90,7 +90,7 @@ npm i
 
 Execute linters via `npm`.
 
-```bash
+```sh
 # git, javascript and markdown
 npm run lint
 
@@ -108,7 +108,7 @@ npm run lint:md
 
 Execute tests via `npm`.
 
-```bash
+```sh
 # lint, unit tests and integration tests
 npm test
 
@@ -123,7 +123,7 @@ npm run test:integration
 
 Execute formatters via `npm`.
 
-```bash
+```sh
 # javascript and markdown
 npm run format
 
@@ -138,7 +138,7 @@ npm run format:md
 
 Run a build via `npm`.
 
-```bash
+```sh
 npm run build
 ```
 
