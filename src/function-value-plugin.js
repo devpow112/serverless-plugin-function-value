@@ -8,11 +8,11 @@ export default class FunctionValuePlugin {
     const classes = serverless.classes;
 
     const getLambdaLogicalId = address => {
-      if (!functions.includes(address)) {
-        throw new classes.Error(`Function "${address}" not defined`);
+      if (functions.includes(address)) {
+        return naming.getLambdaLogicalId(address);
       }
 
-      return naming.getLambdaLogicalId(address);
+      throw new classes.Error(`Function "${address}" not defined`);
     };
 
     this.configurationVariablesSources = {
