@@ -1,8 +1,8 @@
-name: Push
+name: Release
 on:
   push:
     branches: main
-concurrency: push
+concurrency: release
 jobs:
   ci:
     name: CI
@@ -10,8 +10,8 @@ jobs:
       contents: read
       security-events: write
     uses: ./.github/workflows/ci.yml
-  release:
-    name: Release
+  cd:
+    name: CD
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
