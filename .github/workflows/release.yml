@@ -3,19 +3,21 @@ on:
   push:
     branches: main
 concurrency: release
+permissions:
+  contents: read
 jobs:
   ci:
     name: CI
     permissions:
       contents: read
       security-events: write
+    if: (!startsWith(github.event.head_commit.message, 'chore(release):'))
     uses: ./.github/workflows/ci.yml
   cd:
     name: CD
+    if: (!startsWith(github.event.head_commit.message, 'chore(release):'))
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    permissions:
-      contents: read
     needs:
      - ci
     steps:
