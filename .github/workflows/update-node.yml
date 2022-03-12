@@ -32,6 +32,7 @@ jobs:
       - name: Update .nvmrc
         run: echo '${{steps.info.outputs.version-new}}' > .nvmrc
       - name: Create pull request
+        id: changes
         uses: peter-evans/create-pull-request@v3.14.0
         with:
           token: ${{secrets.AUTOMATION_TOKEN}}
@@ -46,3 +47,10 @@ jobs:
           labels: auto,javascript,dependencies
         env:
           GIT_USER: ${{secrets.AUTOMATION_USER}} <${{secrets.AUTOMATION_EMAIL}}>
+      - name: Enable pull request auto-merge
+        if: steps.changes.outputs.pull-request-operation == 'created'
+        uses: peter-evans/enable-pull-request-automerge@v1.2.0
+        with:
+          token: ${{secrets.AUTOMATION_TOKEN}}
+          pull-request-number: ${{steps.changes.outputs.pull-request-number}}
+          merge-method: squash
