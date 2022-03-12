@@ -53,4 +53,4 @@ jobs:
         with:
           token: ${{secrets.AUTOMATION_TOKEN}}
           pull-request-number: ${{steps.changes.outputs.pull-request-number}}
-          merge-method: squash
+          merge-method: rebase
