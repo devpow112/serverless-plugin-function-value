@@ -1,5 +1,6 @@
 documentation:
   - '*.md'
+  - LICENSE
 github-actions:
   - .github/workflows/*.yml
 javascript:
