@@ -5,7 +5,7 @@
 [![Release][Release Badge]][Release Workflow]
 [![Coverage][Coverage Badge]][Coverage Report]
 [![Vulnerabilities][Vulnerabilities Badge]][Vulnerabilities Report]
-[![Node Version][Node Version Badge]](package.json#L42)
+[![Node Version][Node Version Badge]](package.json#L42-L43)
 [![Serverless Version][Serverless Version]](https://serverless.com)
 
 Serverless framework plugin that will automatically generate AWS CloudFormation
