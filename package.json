@@ -46,7 +46,7 @@
     "serverless": "^3"
   },
   "devDependencies": {
-    "@babel/cli": "^7.20.7",
+    "@babel/cli": "^7.21.0",
     "@babel/register": "^7.18.9",
     "@commitlint/cli": "^17.4.3",
     "@devpow112/babel-config": "^1.0.4",
