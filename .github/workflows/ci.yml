@@ -45,7 +45,7 @@ jobs:
       - name: Run tests (integration)
         run:  npm run test:integration
       - name: Report coverage
-        uses: coverallsapp/github-action@v2.1.0
+        uses: coverallsapp/github-action@v2.1.1
         with:
           github-token: ${{github.token}}
   build:
