@@ -10,7 +10,7 @@ jobs:
     timeout-minutes: 5
     steps:
       - name: Checkout
-        uses: actions/checkout@v3.5.2
+        uses: actions/checkout@v3.5.3
         with:
           fetch-depth: 0
       - name: Set up node
@@ -32,7 +32,7 @@ jobs:
     timeout-minutes: 5
     steps:
       - name: Checkout
-        uses: actions/checkout@v3.5.2
+        uses: actions/checkout@v3.5.3
       - name: Set up node
         uses: actions/setup-node@v3.6.0
         with:
@@ -54,7 +54,7 @@ jobs:
     timeout-minutes: 5
     steps:
       - name: Checkout
-        uses: actions/checkout@v3.5.2
+        uses: actions/checkout@v3.5.3
       - name: Set up node
         uses: actions/setup-node@v3.6.0
         with:
@@ -73,11 +73,11 @@ jobs:
       security-events: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v3.5.2
+        uses: actions/checkout@v3.5.3
       - name: Set up CodeQL
-        uses: github/codeql-action/init@v2.3.6
+        uses: github/codeql-action/init@v2.20.0
         with:
           languages: javascript
           config-file: .github/codeql.yml
       - name: Run analysis
-        uses: github/codeql-action/analyze@v2.3.6
+        uses: github/codeql-action/analyze@v2.20.0
