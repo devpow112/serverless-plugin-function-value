@@ -4,7 +4,6 @@
 [![Version][Version Badge]][Version Package]
 [![Release][Release Badge]][Release Workflow]
 [![Coverage][Coverage Badge]][Coverage Report]
-[![Vulnerabilities][Vulnerabilities Badge]][Vulnerabilities Report]
 [![Node Version][Node Version Badge]][Node Version Rules]
 [![Serverless Version][Serverless Version]](https://serverless.com)
 
@@ -152,6 +151,4 @@ npm run build
 [Release Workflow]: https://github.com/devpow112/serverless-plugin-function-value/actions/workflows/release.yml?query=branch%3Amain
 [Coverage Badge]: https://img.shields.io/coveralls/github/devpow112/serverless-plugin-function-value/main?label=Coverage
 [Coverage Report]: https://coveralls.io/github/devpow112/serverless-plugin-function-value?branch=main
-[Vulnerabilities Badge]: https://img.shields.io/snyk/vulnerabilities/github/devpow112/serverless-plugin-function-value?label=Vulnerabilities
-[Vulnerabilities Report]: https://snyk.io/test/github/devpow112/serverless-plugin-function-value
 [Serverless Version]: https://img.shields.io/github/package-json/dependency-version/devpow112/serverless-plugin-function-value/dev/serverless/main
