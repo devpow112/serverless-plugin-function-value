@@ -61,7 +61,7 @@
     "nyc": "^15.1.0",
     "rimraf": "^5.0.5",
     "semantic-release": "^19.0.5",
-    "serverless": "^3.37.0",
+    "serverless": "^3.38.0",
     "sinon": "^17.0.1"
   }
 }
