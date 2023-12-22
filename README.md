@@ -117,19 +117,22 @@ npm run test:unit
 npm run test:integration
 ```
 
-### Formatting
+### Fixing
 
-Execute formatters via `npm`.
+Execute automatic fixers via `npm`.
 
 ```console
-# javascript and markdown
-npm run format
+# javascript, markdown and package.json
+npm run fix
 
 # javascript only
-npm run format:js
+npm run fix:js
 
 # markdown only
-npm run format:md
+npm run fix:md
+
+# package.json only
+npm run fix:pkg
 ```
 
 ### Building
@@ -146,7 +149,7 @@ npm run build
 [Version Badge]: https://img.shields.io/npm/v/serverless-plugin-function-value?label=Version
 [Version Package]: https://www.npmjs.com/serverless-plugin-function-value
 [Node Version Badge]: https://img.shields.io/node/v/serverless-plugin-function-value
-[Node Version Rules]: ./package.json#L42-L43
+[Node Version Rules]: ./package.json#L42
 [Release Badge]: https://github.com/devpow112/serverless-plugin-function-value/actions/workflows/release.yml/badge.svg?branch=main
 [Release Workflow]: https://github.com/devpow112/serverless-plugin-function-value/actions/workflows/release.yml?query=branch%3Amain
 [Coverage Badge]: https://img.shields.io/coveralls/github/devpow112/serverless-plugin-function-value/main?label=Coverage
