@@ -1,6 +1,5 @@
 name: CI
-on:
-  workflow_call:
+on: workflow_call
 permissions:
   contents: read
 jobs:
@@ -26,6 +25,8 @@ jobs:
         run: npm run lint:md
       - name: Run lint (Git)
         run: npm run lint:git
+      - name: Run lint (Package)
+        run: npm run lint:pkg
   test:
     name: Test
     runs-on: ubuntu-latest
