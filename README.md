@@ -89,7 +89,7 @@ npm i
 Execute linters via `npm`.
 
 ```console
-# git, javascript and markdown
+# git, javascript, markdown and package.json
 npm run lint
 
 # git only
@@ -100,6 +100,9 @@ npm run lint:js
 
 # markdown only
 npm run lint:md
+
+# package.json only
+npm run lint:pkg
 ```
 
 ### Testing
