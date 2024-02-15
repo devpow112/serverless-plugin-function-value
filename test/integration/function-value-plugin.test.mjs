@@ -1,11 +1,13 @@
-import childProcess from 'child_process';
+import { dirname, resolve } from 'node:path';
+import { exec } from 'node:child_process';
 import { expect } from 'chai';
-import { open } from 'fs/promises';
-import { promisify } from 'util';
-import { resolve } from 'path';
+import { fileURLToPath } from 'node:url';
+import { open } from 'node:fs/promises';
+import { promisify } from 'node:util';
 
-const exec = promisify(childProcess.exec);
-const assetPath = resolve(__dirname, 'assets');
+const scriptPath = dirname(fileURLToPath(import.meta.url));
+const execAsync = promisify(exec);
+const assetPath = resolve(scriptPath, 'assets');
 const options = { cwd: assetPath, stdio: 'inherit' };
 const logicalId = 'TestLambdaFunction';
 
@@ -15,7 +17,7 @@ describe('serverless cloud formation template', () => {
   before(async function() {
     this.timeout(30000);
 
-    await exec('npx serverless package', options);
+    await execAsync('npx serverless package', options);
 
     const templateFileName = 'cloudformation-template-update-stack.json';
     const templatePath = resolve(assetPath, '.serverless', templateFileName);
