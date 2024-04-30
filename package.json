@@ -41,7 +41,7 @@
     "test:integration": "npm run -s build && mocha test/integration/*.test.mjs"
   },
   "devDependencies": {
-    "@babel/cli": "^7.24.1",
+    "@babel/cli": "^7.24.5",
     "@babel/register": "^7.23.7",
     "@commitlint/cli": "^18.6.1",
     "@devpow112/babel-config": "^1.2.1",
