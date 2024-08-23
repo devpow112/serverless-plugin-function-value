@@ -58,7 +58,7 @@
     "semantic-release": "^23.1.1",
     "serverless": "^3.38.0",
     "sinon": "^18.0.0",
-    "sort-package-json": "^2.10.0"
+    "sort-package-json": "^2.10.1"
   },
   "peerDependencies": {
     "serverless": "^3"
