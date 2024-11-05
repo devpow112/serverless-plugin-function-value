@@ -4,7 +4,7 @@
 [![Version][Version Badge]][Version Package]
 [![Release][Release Badge]][Release Workflow]
 [![Coverage][Coverage Badge]][Coverage Report]
-[![Node Version][Node Version Badge]][Node Version Rules]
+[![Node Version][Node Version Badge]](./package.json#L67)
 [![Serverless Version][Serverless Version]](https://serverless.com)
 
 Serverless framework plugin that will automatically generate AWS CloudFormation
@@ -152,7 +152,6 @@ npm run build
 [Version Badge]: https://img.shields.io/npm/v/serverless-plugin-function-value?label=Version
 [Version Package]: https://www.npmjs.com/serverless-plugin-function-value
 [Node Version Badge]: https://img.shields.io/node/v/serverless-plugin-function-value
-[Node Version Rules]: ./package.json#L42
 [Release Badge]: https://github.com/devpow112/serverless-plugin-function-value/actions/workflows/release.yml/badge.svg?branch=main
 [Release Workflow]: https://github.com/devpow112/serverless-plugin-function-value/actions/workflows/release.yml?query=branch%3Amain
 [Coverage Badge]: https://img.shields.io/coveralls/github/devpow112/serverless-plugin-function-value/main?label=Coverage
