@@ -29,3 +29,32 @@ updates:
     commit-message:
       prefix: chore
       include: scope
+    ignore:
+      - dependency-name: serverless
+        versions:
+          - '>= 4'
+      - dependency-name: chai
+        versions:
+          - '>= 5'
+    groups:
+      babel:
+        dependency-type: development
+        patterns:
+          - '@babel/*'
+          - '@devpow112/babel-*'
+      eslint:
+        dependency-type: development
+        patterns:
+          - eslint
+          - '@eslint/*'
+          - '@devpow112/eslint-*'
+      commitlint:
+        dependency-type: development
+        patterns:
+          - '@commitlint/*'
+          - '@devpow112/commitlint-*'
+      semantic-release:
+        dependency-type: development
+        patterns:
+          - semantic-release
+          - '@devpow112/semantic-release-*'
