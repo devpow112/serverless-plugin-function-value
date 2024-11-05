@@ -1,13 +1,11 @@
-import { dirname, resolve } from 'node:path';
 import { exec } from 'node:child_process';
 import { expect } from 'chai';
-import { fileURLToPath } from 'node:url';
 import { open } from 'node:fs/promises';
 import { promisify } from 'node:util';
+import { resolve } from 'node:path';
 
-const scriptPath = dirname(fileURLToPath(import.meta.url));
 const execAsync = promisify(exec);
-const assetPath = resolve(scriptPath, 'assets');
+const assetPath = resolve(__dirname, 'assets');
 const options = { cwd: assetPath, stdio: 'inherit' };
 const logicalId = 'TestLambdaFunction';
 
