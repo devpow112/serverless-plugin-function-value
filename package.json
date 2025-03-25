@@ -60,7 +60,7 @@
     "rimraf": "^6.0.1",
     "semantic-release": "^24.2.3",
     "serverless": "^3.40.0",
-    "sinon": "^19.0.4",
+    "sinon": "^20.0.0",
     "sort-package-json": "^3.0.0"
   },
   "peerDependencies": {
