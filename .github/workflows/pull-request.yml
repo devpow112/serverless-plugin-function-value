@@ -4,6 +4,9 @@ on:
     branches: main
 permissions:
   contents: read
+concurrency:
+  group: pr/${{github.event.number}}
+  cancel-in-progress: true
 jobs:
   ci:
     name: CI
