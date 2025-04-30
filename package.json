@@ -27,18 +27,18 @@
   ],
   "scripts": {
     "build": "rimraf dist/ && babel --verbose --out-dir dist src",
-    "lint": "run-s -s lint:git lint:js lint:md",
-    "lint:js": "eslint",
-    "lint:md": "markdownlint . --ignore-path .gitignore",
-    "lint:git": "commitlint --from origin/main --to HEAD",
-    "lint:pkg": "sort-package-json --check",
     "fix": "run-s -s fix:js fix:md fix:pkg",
     "fix:js": "npm run -s lint:js -- --fix",
     "fix:md": "npm run -s lint:md -- --fix",
     "fix:pkg": "npm pkg fix && sort-package-json",
+    "lint": "run-s -s lint:git lint:js lint:md",
+    "lint:git": "commitlint --from origin/main --to HEAD",
+    "lint:js": "eslint",
+    "lint:md": "markdownlint . --ignore-path .gitignore",
+    "lint:pkg": "sort-package-json --check",
     "test": "run-s -s lint test:unit test:integration",
-    "test:unit": "nyc mocha test/unit/*.test.js",
-    "test:integration": "npm run -s build && mocha test/integration/*.test.js"
+    "test:integration": "npm run -s build && mocha test/integration/*.test.js",
+    "test:unit": "nyc mocha test/unit/*.test.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.27.0",
