@@ -41,8 +41,8 @@
     "test:unit": "nyc mocha test/unit/*.test.js"
   },
   "devDependencies": {
-    "@babel/cli": "^7.27.0",
-    "@babel/register": "^7.25.9",
+    "@babel/cli": "^7.27.1",
+    "@babel/register": "^7.27.1",
     "@commitlint/cli": "^19.8.0",
     "@devpow112/babel-config": "^1.2.4",
     "@devpow112/commitlint-config": "^2.0.3",
