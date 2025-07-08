@@ -6,6 +6,16 @@ const functionName = 'test';
 const logicalId = 'TestLambdaFunction';
 const resolverTypes = ['arn', 'name', 'logicalid'];
 const errorMessage = 'Function "invalid" not defined';
+const resolverSnippets = [{
+  type: resolverTypes[0],
+  expected: { 'Fn::GetAtt': [logicalId, 'Arn'] }
+}, {
+  type: resolverTypes[1],
+  expected: { Ref: logicalId }
+}, {
+  type: resolverTypes[2],
+  expected: logicalId
+}];
 
 describe('plugin', () => {
   let log;
@@ -28,17 +38,6 @@ describe('plugin', () => {
   });
 
   describe('will generate snippet', () => {
-    const resolverSnippets = [{
-      type: resolverTypes[0],
-      expected: { 'Fn::GetAtt': [logicalId, 'Arn'] }
-    }, {
-      type: resolverTypes[1],
-      expected: { Ref: logicalId }
-    }, {
-      type: resolverTypes[2],
-      expected: logicalId
-    }];
-
     for (const resolverSnippet of resolverSnippets) {
       it(resolverSnippet.type, async () => {
         const variableSource = variableSources[`fn.${resolverSnippet.type}`];
