@@ -1,6 +1,6 @@
 {
   "name": "serverless-plugin-function-value",
-  "version": "2.0.14",
+  "version": "2.0.15",
   "description": "Serverless framework plugin that will automatically generate AWS CloudFormation snippets to reference a functions name, ARN or logical ID value based on the internally generated Lambda logical ID",
   "keywords": [
     "aws",
