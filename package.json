@@ -50,7 +50,7 @@
     "@devpow112/babel-config": "^1",
     "@devpow112/commitlint-config": "^2",
     "@devpow112/eslint-config": "^4",
-    "@devpow112/semantic-release-config": "^3",
+    "@devpow112/semantic-release-config": "^4",
     "@eslint/compat": "^2",
     "chai": "^4",
     "eslint": "^9",
@@ -59,7 +59,7 @@
     "npm-run-all": "^4",
     "nyc": "^17",
     "rimraf": "^6",
-    "semantic-release": "^24",
+    "semantic-release": "^25",
     "serverless": "^3",
     "sinon": "^21",
     "sort-package-json": "^3"
