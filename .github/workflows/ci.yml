@@ -13,7 +13,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Set up node
-        uses: actions/setup-node@v6.0.0
+        uses: actions/setup-node@v6.1.0
         with:
           node-version-file: .nvmrc
           cache: npm
@@ -35,7 +35,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6.0.1
       - name: Set up node
-        uses: actions/setup-node@v6.0.0
+        uses: actions/setup-node@v6.1.0
         with:
           node-version-file: .nvmrc
           cache: npm
@@ -57,7 +57,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6.0.1
       - name: Set up node
-        uses: actions/setup-node@v6.0.0
+        uses: actions/setup-node@v6.1.0
         with:
           node-version-file: .nvmrc
           cache: npm
