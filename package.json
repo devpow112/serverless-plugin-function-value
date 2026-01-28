@@ -41,7 +41,7 @@
     "test:unit": "nyc mocha test/unit/*.test.js"
   },
   "dependencies": {
-    "serverless": "^3"
+    "serverless": "^4"
   },
   "devDependencies": {
     "@babel/cli": "^7",
@@ -60,7 +60,7 @@
     "nyc": "^17",
     "rimraf": "^6",
     "semantic-release": "^25",
-    "serverless": "^3",
+    "serverless": "^4",
     "sinon": "^21",
     "sort-package-json": "^3"
   },
