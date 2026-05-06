@@ -61,7 +61,7 @@
     "rimraf": "^6",
     "semantic-release": "^25",
     "serverless": "^3",
-    "sinon": "^21",
+    "sinon": "^22",
     "sort-package-json": "^3"
   },
   "engines": {
