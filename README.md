@@ -156,4 +156,4 @@ npm run build
 [Release Workflow]: https://github.com/devpow112/serverless-plugin-function-value/actions/workflows/release.yml?query=branch%3Amain
 [Coverage Badge]: https://img.shields.io/coveralls/github/devpow112/serverless-plugin-function-value/main?label=Coverage
 [Coverage Report]: https://coveralls.io/github/devpow112/serverless-plugin-function-value?branch=main
-[Serverless Version]: https://img.shields.io/github/package-json/dependency-version/devpow112/serverless-plugin-function-value/dev/serverless/main
+[Serverless Version]: https://img.shields.io/github/package-json/dependency-version/devpow112/serverless-plugin-function-value/serverless/main
